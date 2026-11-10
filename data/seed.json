@@ -1,0 +1,1287 @@
+{
+  "venues": [
+    {
+      "id": "cannon-park",
+      "name": "Cannon Park",
+      "city": "Canton",
+      "address": "130 E Main St, Canton, GA 30114",
+      "latitude": 34.2370622,
+      "longitude": -84.490266,
+      "coordinate_source": "OpenStreetMap Nominatim: The Jones Building, 130, East Main Street, North Canton, Canton, Cherokee County, Georgia, 30114, United States",
+      "geocoded_at": "2026-11-10T17:15:00Z"
+    },
+    {
+      "id": "alpharetta-town-green",
+      "name": "Village Green / Downtown Alpharetta",
+      "city": "Alpharetta",
+      "address": "2 Park Plaza, Alpharetta, GA 30009",
+      "latitude": 34.0746349,
+      "longitude": -84.2922705,
+      "coordinate_source": "OpenStreetMap Nominatim: Alpharetta City Hall, 2, Park Plaza, Alpharetta, Fulton County, Georgia, 30009, United States",
+      "geocoded_at": "2026-11-10T17:15:00Z"
+    },
+    {
+      "id": "avalon",
+      "name": "Avalon",
+      "city": "Alpharetta",
+      "address": "400 Avalon Blvd, Alpharetta, GA 30009",
+      "latitude": 34.0708885,
+      "longitude": -84.277254,
+      "coordinate_source": "OpenStreetMap Nominatim: Avalon Boulevard, Avalon, Alpharetta, Fulton County, Georgia, 30009, United States",
+      "geocoded_at": "2026-11-10T17:15:00Z"
+    },
+    {
+      "id": "mill-on-etowah",
+      "name": "The Mill on Etowah",
+      "city": "Canton",
+      "address": "225 Reformation Parkway, Canton, GA 30114",
+      "latitude": 34.2351673,
+      "longitude": -84.4951949,
+      "coordinate_source": "OpenStreetMap Nominatim: Rex McInvale, 225, Reformation Parkway, North Canton, Canton, Cherokee County, Georgia, 30114, United States",
+      "geocoded_at": "2026-11-10T17:15:00Z"
+    },
+    {
+      "id": "woodstock-city-center",
+      "name": "The Park at City Center",
+      "city": "Woodstock",
+      "address": "101 Arnold Mill Rd, Woodstock, GA 30188",
+      "latitude": 34.101208,
+      "longitude": -84.510681,
+      "coordinate_source": "OpenStreetMap Nominatim: 101, Arnold Mill Road, Dobbs Estates, Woodstock, Cherokee County, Georgia, 30188, United States",
+      "geocoded_at": "2026-11-10T17:26:07.966818+00:00"
+    },
+    {
+      "id": "falany",
+      "name": "Falany Performing Arts Center",
+      "city": "Waleska",
+      "address": "199 Fine Arts Drive, Waleska, GA 30183",
+      "latitude": 34.321918,
+      "longitude": -84.556667,
+      "coordinate_source": "OpenStreetMap Nominatim: 199, Fine Arts Drive, Waleska, Cherokee County, Georgia, 30183, United States",
+      "geocoded_at": "2026-11-10T17:26:09.470929+00:00"
+    },
+    {
+      "id": "dixie-speedway",
+      "name": "Dixie Speedway",
+      "city": "Woodstock",
+      "address": ""
+    },
+    {
+      "id": "cherokee-veterans-park",
+      "name": "Cherokee Veterans Park",
+      "city": "Canton",
+      "address": ""
+    },
+    {
+      "id": "first-baptist-woodstock",
+      "name": "First Baptist Woodstock",
+      "city": "Woodstock",
+      "address": ""
+    },
+    {
+      "id": "woodstock-arts",
+      "name": "Woodstock Arts Theatre",
+      "city": "Woodstock",
+      "address": "8534 Main St, Woodstock, GA 30188",
+      "latitude": 34.1018607,
+      "longitude": -84.5200173,
+      "coordinate_source": "OpenStreetMap Nominatim: The Chambers at City Center, 8534, Main Street, Woodstock Station, Deer Run at Towne Lake, Woodstock, Cherokee County, Georgia, 30188, United States",
+      "geocoded_at": "2026-11-10T17:26:10.981828+00:00"
+    },
+    {
+      "id": "depot-park",
+      "name": "Depot Park",
+      "city": "Kennesaw",
+      "address": "2828 Cherokee Street NW, Kennesaw, GA 30144",
+      "latitude": 34.0233212,
+      "longitude": -84.6139286,
+      "coordinate_source": "OpenStreetMap Nominatim: 2828, Cherokee Street Northwest, Kennesaw, Cobb County, Georgia, 30144, United States",
+      "geocoded_at": "2026-11-10T17:26:12.531913+00:00"
+    },
+    {
+      "id": "marietta-pac",
+      "name": "Marietta Performing Arts Center",
+      "city": "Marietta",
+      "address": "1171 Whitlock Ave NW, Marietta, GA 30064",
+      "latitude": 33.9456884,
+      "longitude": -84.5963644,
+      "coordinate_source": "OpenStreetMap Nominatim: Whitlock Avenue Northwest, Marietta, Cobb County, Georgia, 30127, United States",
+      "geocoded_at": "2026-11-10T17:26:14.039968+00:00"
+    }
+  ],
+  "events": [
+    {
+      "id": "canton-tree-lighting",
+      "name": "Canton Tree Lighting and Drone Show",
+      "city": "Canton",
+      "category": "tree-lighting",
+      "season": 2026,
+      "venue_id": "cannon-park",
+      "description": "Canton Tree Lighting and Drone Show in Canton. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "https://explorecantonga.com/events/city-of-canton-tree-lighting-and-drone-show/",
+      "verified": true,
+      "last_verified": "2026-11-10",
+      "last_checked": "2026-11-10",
+      "verification_notes": "Official tourism event page confirms date, time and Cannon Park address. Admission price not stated.",
+      "featured": false,
+      "schedule_notes": "Official tourism event page confirms date, time and Cannon Park address. Admission price not stated.",
+      "occurrences": [
+        {
+          "start_date": "2026-11-18",
+          "end_date": "2026-11-18",
+          "start_time": "18:30",
+          "end_time": "20:30"
+        }
+      ]
+    },
+    {
+      "id": "hamilton-tree-lighting",
+      "name": "Hamilton Hotel Christmas Tree Lighting",
+      "city": "Alpharetta",
+      "category": "tree-lighting",
+      "season": 2026,
+      "venue_id": null,
+      "description": "Hamilton Hotel Christmas Tree Lighting in Alpharetta. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "Time to be announced.",
+      "occurrences": [
+        {
+          "start_date": "2026-11-20",
+          "end_date": "2026-11-20",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "roswell-christkindlmarket",
+      "name": "Roswell Christkindlmarket",
+      "city": "Roswell",
+      "category": "market",
+      "season": 2026,
+      "venue_id": null,
+      "description": "Roswell Christkindlmarket in Roswell. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "Date range from supplied list; individual operating days and performance times are unconfirmed.",
+      "occurrences": [
+        {
+          "start_date": "2026-11-20",
+          "end_date": "2026-12-23",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "season-of-celebration",
+      "name": "Alpharetta Season of Celebration",
+      "city": "Alpharetta",
+      "category": "tree-lighting",
+      "season": 2026,
+      "venue_id": "alpharetta-town-green",
+      "description": "Alpharetta Season of Celebration in Alpharetta. See the official source for current event information.",
+      "price_type": "free",
+      "price_details": "",
+      "source_url": "https://www.awesomealpharetta.com/christmas-tree-lighting/",
+      "verified": true,
+      "last_verified": "2026-11-10",
+      "last_checked": "2026-11-10",
+      "verification_notes": "Official tourism source confirms 2026 date and hours. Explore Georgia confirms Village Green at 2 Park Plaza and free admission.",
+      "featured": false,
+      "schedule_notes": "Official tourism source confirms 2026 date and hours. Explore Georgia confirms Village Green at 2 Park Plaza and free admission.",
+      "occurrences": [
+        {
+          "start_date": "2026-11-21",
+          "end_date": "2026-11-21",
+          "start_time": "17:00",
+          "end_time": "20:00"
+        }
+      ]
+    },
+    {
+      "id": "cumming-tree-lighting",
+      "name": "Cumming Christmas Tree Lighting",
+      "city": "Cumming",
+      "category": "tree-lighting",
+      "season": 2026,
+      "venue_id": null,
+      "description": "Cumming Christmas Tree Lighting in Cumming. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "Time to be announced.",
+      "occurrences": [
+        {
+          "start_date": "2026-11-21",
+          "end_date": "2026-11-21",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "ball-ground-light-up",
+      "name": "Ball Ground Light Up the Night",
+      "city": "Ball Ground",
+      "category": "festival",
+      "season": 2026,
+      "venue_id": null,
+      "description": "Ball Ground Light Up the Night in Ball Ground. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "Time to be announced.",
+      "occurrences": [
+        {
+          "start_date": "2026-11-21",
+          "end_date": "2026-11-21",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "lighting-of-avalon",
+      "name": "Lighting of Avalon",
+      "city": "Alpharetta",
+      "category": "tree-lighting",
+      "season": 2026,
+      "venue_id": "avalon",
+      "description": "Lighting of Avalon in Alpharetta. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "https://www.awesomealpharetta.com/event/the-lighting-of-avalon/",
+      "verified": true,
+      "last_verified": "2026-11-10",
+      "last_checked": "2026-11-10",
+      "verification_notes": "Official tourism calendar confirms 2026 date, hours and Avalon venue. Individual activities may cost extra.",
+      "featured": false,
+      "schedule_notes": "Official tourism calendar confirms 2026 date, hours and Avalon venue. Individual activities may cost extra.",
+      "occurrences": [
+        {
+          "start_date": "2026-11-22",
+          "end_date": "2026-11-22",
+          "start_time": "14:00",
+          "end_time": "19:30"
+        }
+      ]
+    },
+    {
+      "id": "ball-ground-tree-lighting",
+      "name": "Ball Ground Hometown Tree Lighting",
+      "city": "Ball Ground",
+      "category": "tree-lighting",
+      "season": 2026,
+      "venue_id": null,
+      "description": "Ball Ground Hometown Tree Lighting in Ball Ground. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "Time to be announced.",
+      "occurrences": [
+        {
+          "start_date": "2026-11-28",
+          "end_date": "2026-11-28",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "alpharetta-holiday-symphony",
+      "name": "An Alpharetta Holiday — Alpharetta Symphony",
+      "city": "Alpharetta",
+      "category": "concert",
+      "season": 2026,
+      "venue_id": null,
+      "description": "An Alpharetta Holiday — Alpharetta Symphony in Alpharetta. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": true,
+      "schedule_notes": "Time to be announced.",
+      "occurrences": [
+        {
+          "start_date": "2026-11-28",
+          "end_date": "2026-11-28",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "kennesaw-extravaganza",
+      "name": "Kennesaw Holiday Extravaganza",
+      "city": "Kennesaw",
+      "category": "festival",
+      "season": 2026,
+      "venue_id": "depot-park",
+      "description": "Kennesaw Holiday Extravaganza in Kennesaw. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "https://www.kennesaw-ga.gov/kennesaw-celebrates-the-holiday-season-with-annual-holly-days-events/",
+      "verified": true,
+      "last_verified": "2026-11-10",
+      "last_checked": "2026-11-10",
+      "verification_notes": "City confirms November 29 through January 10, 2027 at Depot Park. Daily access hours not stated.",
+      "featured": false,
+      "schedule_notes": "City confirms November 29 through January 10, 2027 at Depot Park. Daily access hours not stated.",
+      "occurrences": [
+        {
+          "start_date": "2026-11-29",
+          "end_date": "2027-01-10",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "atlanta-pops",
+      "name": "Atlanta Pops Orchestra Christmas",
+      "city": "Waleska",
+      "category": "concert",
+      "season": 2026,
+      "venue_id": "falany",
+      "description": "Atlanta Pops Orchestra Christmas in Waleska. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "https://atlantapops.org/concerts-events/",
+      "verified": true,
+      "last_verified": "2026-11-10",
+      "last_checked": "2026-11-10",
+      "verification_notes": "Orchestra calendar confirms two November 30 performances at the Falany. End times and prices not stated.",
+      "featured": true,
+      "schedule_notes": "Orchestra calendar confirms two November 30 performances at the Falany. End times and prices not stated.",
+      "occurrences": [
+        {
+          "start_date": "2026-11-30",
+          "end_date": "2026-11-30",
+          "start_time": "15:00",
+          "end_time": null
+        },
+        {
+          "start_date": "2026-11-30",
+          "end_date": "2026-11-30",
+          "start_time": "19:30",
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "hickory-flat-market",
+      "name": "Hickory Flat Christmas Market",
+      "city": "Canton",
+      "category": "market",
+      "season": 2026,
+      "venue_id": null,
+      "description": "Hickory Flat Christmas Market in Canton. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "Time to be announced.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-01",
+          "end_date": "2026-12-01",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "kennesaw-tree-lighting",
+      "name": "Kennesaw Tree Lighting",
+      "city": "Kennesaw",
+      "category": "tree-lighting",
+      "season": 2026,
+      "venue_id": "depot-park",
+      "description": "Kennesaw Tree Lighting in Kennesaw. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "https://www.kennesaw-ga.gov/kennesaw-event/annual-tree-lighting-ceremony-2/",
+      "verified": true,
+      "last_verified": "2026-11-10",
+      "last_checked": "2026-11-10",
+      "verification_notes": "City calendar confirms ceremony hours at Depot Park; lighting at 7 pm.",
+      "featured": false,
+      "schedule_notes": "City calendar confirms ceremony hours at Depot Park; lighting at 7 pm.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-02",
+          "end_date": "2026-12-02",
+          "start_time": "18:00",
+          "end_time": "19:30"
+        }
+      ]
+    },
+    {
+      "id": "marietta-tree-lighting",
+      "name": "Marietta Square Tree Lighting",
+      "city": "Marietta",
+      "category": "tree-lighting",
+      "season": 2026,
+      "venue_id": null,
+      "description": "Marietta Square Tree Lighting in Marietta. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "Time to be announced.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-03",
+          "end_date": "2026-12-03",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "mistletoe-on-main",
+      "name": "Mistletoe on Main",
+      "city": "Canton",
+      "category": "festival",
+      "season": 2026,
+      "venue_id": null,
+      "description": "Mistletoe on Main in Canton. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "Time to be announced.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-03",
+          "end_date": "2026-12-03",
+          "start_time": null,
+          "end_time": null
+        },
+        {
+          "start_date": "2026-12-10",
+          "end_date": "2026-12-10",
+          "start_time": null,
+          "end_time": null
+        },
+        {
+          "start_date": "2026-12-17",
+          "end_date": "2026-12-17",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "christmas-at-reinhardt",
+      "name": "Christmas at Reinhardt",
+      "city": "Waleska",
+      "category": "concert",
+      "season": 2026,
+      "venue_id": "falany",
+      "description": "Christmas at Reinhardt in Waleska. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": true,
+      "schedule_notes": "Date range from supplied list; individual operating days and performance times are unconfirmed.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-03",
+          "end_date": "2026-12-06",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "march-of-toys",
+      "name": "March of the Toys Christmas Parade",
+      "city": "Ball Ground",
+      "category": "parade",
+      "season": 2026,
+      "venue_id": null,
+      "description": "March of the Toys Christmas Parade in Ball Ground. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "Time to be announced.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-04",
+          "end_date": "2026-12-04",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "roswell-tree-lighting",
+      "name": "Roswell Christmas Tree Lighting",
+      "city": "Roswell",
+      "category": "tree-lighting",
+      "season": 2026,
+      "venue_id": null,
+      "description": "Roswell Christmas Tree Lighting in Roswell. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "Time to be announced.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-04",
+          "end_date": "2026-12-04",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "christmas-carol-musical",
+      "name": "A Christmas Carol: The Musical",
+      "city": "Woodstock",
+      "category": "theatre",
+      "season": 2026,
+      "venue_id": "woodstock-arts",
+      "description": "A Christmas Carol: The Musical in Woodstock. See the official source for current event information.",
+      "price_type": "paid",
+      "price_details": "Online $21–22; at the door $23–25. Check producer for current fees and availability.",
+      "source_url": "https://woodstockarts.org/events/a-christmas-carol-2026/",
+      "verified": true,
+      "last_verified": "2026-11-10",
+      "last_checked": "2026-11-10",
+      "verification_notes": "Producer lists individual performances. December 10 is not available online; contact the theatre. End times not assumed.",
+      "featured": false,
+      "schedule_notes": "Producer lists individual performances. December 10 is not available online; contact the theatre. End times not assumed.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-04",
+          "end_date": "2026-12-04",
+          "start_time": "19:30",
+          "end_time": null
+        },
+        {
+          "start_date": "2026-12-05",
+          "end_date": "2026-12-05",
+          "start_time": "19:30",
+          "end_time": null
+        },
+        {
+          "start_date": "2026-12-06",
+          "end_date": "2026-12-06",
+          "start_time": "14:30",
+          "end_time": null
+        },
+        {
+          "start_date": "2026-12-10",
+          "end_date": "2026-12-10",
+          "start_time": "10:00",
+          "end_time": null
+        },
+        {
+          "start_date": "2026-12-11",
+          "end_date": "2026-12-11",
+          "start_time": "19:30",
+          "end_time": null
+        },
+        {
+          "start_date": "2026-12-12",
+          "end_date": "2026-12-12",
+          "start_time": "19:30",
+          "end_time": null
+        },
+        {
+          "start_date": "2026-12-13",
+          "end_date": "2026-12-13",
+          "start_time": "14:30",
+          "end_time": null
+        },
+        {
+          "start_date": "2026-12-18",
+          "end_date": "2026-12-18",
+          "start_time": "19:30",
+          "end_time": null
+        },
+        {
+          "start_date": "2026-12-19",
+          "end_date": "2026-12-19",
+          "start_time": "19:30",
+          "end_time": null
+        },
+        {
+          "start_date": "2026-12-20",
+          "end_date": "2026-12-20",
+          "start_time": "14:30",
+          "end_time": null
+        },
+        {
+          "start_date": "2026-12-23",
+          "end_date": "2026-12-23",
+          "start_time": "14:30",
+          "end_time": null
+        },
+        {
+          "start_date": "2026-12-24",
+          "end_date": "2026-12-24",
+          "start_time": "14:30",
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "dickens-christmas-carol",
+      "name": "A Dickens’ Christmas Carol",
+      "city": "Canton",
+      "category": "theatre",
+      "season": 2026,
+      "venue_id": null,
+      "description": "A Dickens’ Christmas Carol in Canton. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "Date range from supplied list; individual operating days and performance times are unconfirmed.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-04",
+          "end_date": "2026-12-13",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "ball-ground-market",
+      "name": "Ball Ground Christmas Market",
+      "city": "Ball Ground",
+      "category": "market",
+      "season": 2026,
+      "venue_id": null,
+      "description": "Ball Ground Christmas Market in Ball Ground. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "Date range from supplied list; individual operating days and performance times are unconfirmed.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-05",
+          "end_date": "2026-12-06",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "kennesaw-santa-parade",
+      "name": "A Day with Santa and Illuminate Holly Days Parade",
+      "city": "Kennesaw",
+      "category": "parade",
+      "season": 2026,
+      "venue_id": null,
+      "description": "A Day with Santa and Illuminate Holly Days Parade in Kennesaw. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "https://www.kennesaw-ga.gov/city-notifications/",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": "2026-11-10",
+      "verification_notes": "City confirms parade December 5 at 6 pm; full combined Day with Santa schedule remains unverified.",
+      "featured": false,
+      "schedule_notes": "Time to be announced.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-05",
+          "end_date": "2026-12-05",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "snow-day",
+      "name": "Snow Day at Cumming City Center",
+      "city": "Cumming",
+      "category": "festival",
+      "season": 2026,
+      "venue_id": null,
+      "description": "Snow Day at Cumming City Center in Cumming. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "Time to be announced.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-05",
+          "end_date": "2026-12-05",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "georgia-symphony-pops",
+      "name": "Georgia Symphony Holiday Pops",
+      "city": "Marietta",
+      "category": "concert",
+      "season": 2026,
+      "venue_id": "marietta-pac",
+      "description": "Georgia Symphony Holiday Pops in Marietta. See the official source for current event information.",
+      "price_type": "paid",
+      "price_details": "Saturday $20–65; Sunday $15–49.50, as listed by the orchestra. Fees and availability may vary.",
+      "source_url": "https://www.georgiasymphony.org/event/holiday-pops-4/",
+      "verified": true,
+      "last_verified": "2026-11-10",
+      "last_checked": "2026-11-10",
+      "verification_notes": "Orchestra confirms both concerts. Sunday source: https://www.georgiasymphony.org/event/holiday-pops-5/",
+      "featured": true,
+      "schedule_notes": "Orchestra confirms both concerts. Sunday source: https://www.georgiasymphony.org/event/holiday-pops-5/",
+      "occurrences": [
+        {
+          "start_date": "2026-12-05",
+          "end_date": "2026-12-05",
+          "start_time": "19:30",
+          "end_time": "21:30"
+        },
+        {
+          "start_date": "2026-12-06",
+          "end_date": "2026-12-06",
+          "start_time": "15:00",
+          "end_time": "17:00"
+        }
+      ]
+    },
+    {
+      "id": "woodstock-jubilee",
+      "name": "Woodstock Christmas Jubilee and Parade of Lights",
+      "city": "Woodstock",
+      "category": "parade",
+      "season": 2026,
+      "venue_id": "woodstock-city-center",
+      "description": "Woodstock Christmas Jubilee and Parade of Lights in Woodstock. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "https://woodstock.recdesk.com/Community/Program/Detail?programId=2646",
+      "verified": true,
+      "last_verified": "2026-11-10",
+      "last_checked": "2026-11-10",
+      "verification_notes": "City Parks and Recreation confirms December 6: festival 2–5 pm at The Park at City Center; parade begins at 5:30 pm. Parade end time not stated.",
+      "featured": false,
+      "schedule_notes": "City Parks and Recreation confirms December 6: festival 2–5 pm at The Park at City Center; parade begins at 5:30 pm. Parade end time not stated.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-06",
+          "end_date": "2026-12-06",
+          "start_time": "14:00",
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "nashville-noel",
+      "name": "Nashville Noel",
+      "city": "Waleska",
+      "category": "concert",
+      "season": 2026,
+      "venue_id": "falany",
+      "description": "Nashville Noel in Waleska. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "https://thefalany.showare.com/eventperformances.asp?evt=9",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": "2026-11-10",
+      "verification_notes": "Official ticketing page confirms show and venue; date loads dynamically and was not confirmed. Supplied date retained as unverified.",
+      "featured": true,
+      "schedule_notes": "Time to be announced.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-07",
+          "end_date": "2026-12-07",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "christmas-with-elvis",
+      "name": "Christmas with Elvis",
+      "city": "Woodstock",
+      "category": "concert",
+      "season": 2026,
+      "venue_id": null,
+      "description": "Christmas with Elvis in Woodstock. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": true,
+      "schedule_notes": "Date range from supplied list; individual operating days and performance times are unconfirmed.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-09",
+          "end_date": "2026-12-10",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "nutcracker",
+      "name": "The Nutcracker",
+      "city": "Roswell",
+      "category": "theatre",
+      "season": 2026,
+      "venue_id": null,
+      "description": "The Nutcracker in Roswell. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "Date range from supplied list; individual operating days and performance times are unconfirmed.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-11",
+          "end_date": "2026-12-13",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "canton-merry-market",
+      "name": "Canton Merry Market and Christmas Parade",
+      "city": "Canton",
+      "category": "market",
+      "season": 2026,
+      "venue_id": null,
+      "description": "Canton Merry Market and Christmas Parade in Canton. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "Time to be announced.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-12",
+          "end_date": "2026-12-12",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "holly-springs-parade",
+      "name": "Holly Springs Holly Jolly Christmas Parade",
+      "city": "Holly Springs",
+      "category": "parade",
+      "season": 2026,
+      "venue_id": null,
+      "description": "Holly Springs Holly Jolly Christmas Parade in Holly Springs. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "Time to be announced.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-12",
+          "end_date": "2026-12-12",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "cumming-parade",
+      "name": "Cumming Christmas Parade",
+      "city": "Cumming",
+      "category": "parade",
+      "season": 2026,
+      "venue_id": null,
+      "description": "Cumming Christmas Parade in Cumming. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "Time to be announced.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-12",
+          "end_date": "2026-12-12",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "alpharetta-winter-parade",
+      "name": "Alpharetta Winter Parade",
+      "city": "Alpharetta",
+      "category": "parade",
+      "season": 2026,
+      "venue_id": null,
+      "description": "Alpharetta Winter Parade in Alpharetta. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "Time to be announced.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-12",
+          "end_date": "2026-12-12",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "sounds-of-season",
+      "name": "Sounds of the Season — First Baptist Woodstock",
+      "city": "Woodstock",
+      "category": "concert",
+      "season": 2026,
+      "venue_id": "first-baptist-woodstock",
+      "description": "Sounds of the Season — First Baptist Woodstock in Woodstock. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": true,
+      "schedule_notes": "Date range from supplied list; individual operating days and performance times are unconfirmed.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-12",
+          "end_date": "2026-12-13",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "glimmer-and-glee",
+      "name": "Kennesaw Glimmer and Glee Drone Show",
+      "city": "Kennesaw",
+      "category": "lights",
+      "season": 2026,
+      "venue_id": "depot-park",
+      "description": "Kennesaw Glimmer and Glee Drone Show in Kennesaw. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "https://www.kennesaw-ga.gov/kennesaw-event/glimmer-glee-drone-show/",
+      "verified": true,
+      "last_verified": "2026-11-10",
+      "last_checked": "2026-11-10",
+      "verification_notes": "City calendar confirms evening program 6–8 pm and drone display at 7:30 pm.",
+      "featured": false,
+      "schedule_notes": "City calendar confirms evening program 6–8 pm and drone display at 7:30 pm.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-13",
+          "end_date": "2026-12-13",
+          "start_time": "18:00",
+          "end_time": "20:00"
+        }
+      ]
+    },
+    {
+      "id": "celtic-angels",
+      "name": "Celtic Angels Christmas",
+      "city": "Waleska",
+      "category": "concert",
+      "season": 2026,
+      "venue_id": "falany",
+      "description": "Celtic Angels Christmas in Waleska. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": true,
+      "schedule_notes": "Time to be announced.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-17",
+          "end_date": "2026-12-17",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "grinchmas",
+      "name": "Grinchmas at The Mill",
+      "city": "Canton",
+      "category": "festival",
+      "season": 2026,
+      "venue_id": "mill-on-etowah",
+      "description": "Grinchmas at The Mill in Canton. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "Time to be announced.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-18",
+          "end_date": "2026-12-18",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "polar-express",
+      "name": "Polar Express Winter Wonderland Festival",
+      "city": "Canton",
+      "category": "festival",
+      "season": 2026,
+      "venue_id": null,
+      "description": "Polar Express Winter Wonderland Festival in Canton. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "Time to be announced.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-19",
+          "end_date": "2026-12-19",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "big-band-jazz",
+      "name": "Big Band Holiday Jazz",
+      "city": "Woodstock",
+      "category": "concert",
+      "season": 2026,
+      "venue_id": null,
+      "description": "Big Band Holiday Jazz in Woodstock. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": true,
+      "schedule_notes": "Time to be announced.",
+      "occurrences": [
+        {
+          "start_date": "2026-12-20",
+          "end_date": "2026-12-20",
+          "start_time": null,
+          "end_time": null
+        }
+      ]
+    },
+    {
+      "id": "woodstock-lights",
+      "name": "Holiday Lights of Woodstock",
+      "city": "Woodstock",
+      "category": "lights",
+      "season": 2026,
+      "venue_id": "dixie-speedway",
+      "description": "Holiday Lights of Woodstock in Woodstock. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "2026 opening and closing dates and daily hours await confirmation.",
+      "occurrences": []
+    },
+    {
+      "id": "canton-lights",
+      "name": "Holiday Lights of Canton",
+      "city": "Canton",
+      "category": "lights",
+      "season": 2026,
+      "venue_id": "cherokee-veterans-park",
+      "description": "Holiday Lights of Canton in Canton. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "2026 opening and closing dates and daily hours await confirmation.",
+      "occurrences": []
+    },
+    {
+      "id": "rink-on-river",
+      "name": "Rink on the River",
+      "city": "Canton",
+      "category": "ice-skating",
+      "season": 2026,
+      "venue_id": "mill-on-etowah",
+      "description": "Rink on the River in Canton. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": null,
+      "verification_notes": "Imported from the supplied planning list. Official 2026 confirmation is still needed.",
+      "featured": false,
+      "schedule_notes": "2026 operating dates, session times and ticket prices await confirmation.",
+      "occurrences": []
+    },
+    {
+      "id": "avalon-ice",
+      "name": "Avalon on Ice",
+      "city": "Alpharetta",
+      "category": "ice-skating",
+      "season": 2026,
+      "venue_id": "avalon",
+      "description": "Avalon on Ice in Alpharetta. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "https://www.awesomealpharetta.com/events/dont-miss-events/",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": "2026-11-10",
+      "verification_notes": "Official annual calendar mentions the 2026 attraction. Detailed schedule not fully verified.",
+      "featured": false,
+      "schedule_notes": "2026 operating dates, session times and ticket prices await confirmation.",
+      "occurrences": []
+    },
+    {
+      "id": "lights-loop",
+      "name": "Lights on the Loop",
+      "city": "Alpharetta",
+      "category": "lights",
+      "season": 2026,
+      "venue_id": null,
+      "description": "Lights on the Loop in Alpharetta. See the official source for current event information.",
+      "price_type": "unknown",
+      "price_details": "",
+      "source_url": "https://www.awesomealpharetta.com/events/dont-miss-events/",
+      "verified": false,
+      "last_verified": null,
+      "last_checked": "2026-11-10",
+      "verification_notes": "Official annual calendar mentions the 2026 attraction. Detailed schedule not fully verified.",
+      "featured": false,
+      "schedule_notes": "December 2026; precise dates, access points and hours await confirmation.",
+      "occurrences": []
+    }
+  ]
+}

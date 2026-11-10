@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-10T17:34:57.074551+00:00",
+  "title": "Design System: North Georgia Holiday Events",
+  "extensions": {
+    "colorMeta": {
+      "evergreen": {
+        "role": "primary",
+        "displayName": "Evergreen"
+      },
+      "cranberry": {
+        "role": "secondary",
+        "displayName": "Cranberry"
+      },
+      "gold": {
+        "role": "tertiary",
+        "displayName": "Muted Gold"
+      },
+      "cream": {
+        "role": "neutral",
+        "displayName": "Warm Cream"
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Page heading",
+        "purpose": "Season and detail titles."
+      },
+      "title": {
+        "displayName": "Event title",
+        "purpose": "Readable list record names."
+      }
+    },
+    "shadows": [
+      {
+        "name": "filter-popover",
+        "value": "0 8px 25px #183e321c",
+        "purpose": "Structural separation for floating filters."
+      },
+      {
+        "name": "map-pin",
+        "value": "0 2px 6px #183e3244",
+        "purpose": "Marker legibility over map tiles."
+      }
+    ],
+    "motion": [
+      {
+        "name": "record-selection",
+        "value": "background 0.2s ease-out",
+        "purpose": "Quiet record selection feedback; disabled under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide-map",
+        "value": "1500px"
+      },
+      {
+        "name": "medium",
+        "value": "1100px"
+      },
+      {
+        "name": "mobile",
+        "value": "760px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Evergreen action for committing work.",
+      "html": "<button class=\"ds-button ds-primary\">Save event</button>",
+      "css": ".ds-button{font-family:\"Source Sans 3\",sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--border,#dcded3);border-radius:7px;padding:8px 14px;font-size:16px;font-weight:600;min-height:40px;cursor:pointer;}.ds-button:focus-visible{outline:3px solid var(--gold,#ae7935);outline-offset:4px}.ds-primary{background:var(--green,#183e32);border-color:var(--green,#183e32);color:var(--paper,#fffefa)}.ds-primary:hover{background:#2c5843}.ds-primary:disabled{opacity:.55;cursor:wait}"
+    },
+    {
+      "name": "Secondary button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Quiet supporting action.",
+      "html": "<button class=\"ds-button ds-secondary\">Previous month</button>",
+      "css": ".ds-button{font-family:\"Source Sans 3\",sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--border,#dcded3);border-radius:7px;padding:8px 14px;font-size:16px;font-weight:600;min-height:40px;cursor:pointer;}.ds-button:focus-visible{outline:3px solid var(--gold,#ae7935);outline-offset:4px}.ds-secondary{background:var(--paper,#fffefa);color:var(--green,#183e32)}.ds-secondary:hover{background:#eeeee4}.ds-secondary:disabled{opacity:.55;cursor:wait}"
+    },
+    {
+      "name": "Text field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Editable paper surface with visible focus.",
+      "html": "<label class=\"ds-label\">Event title<input class=\"ds-field\" placeholder=\"Enter event title\"></label>",
+      "css": ".ds-label{font-family:\"Source Sans 3\",sans-serif;display:flex;flex-direction:column;gap:5px;font-size:14px;font-weight:600;color:var(--green,#183e32)}.ds-field{font-family:\"Source Sans 3\",sans-serif;font-size:16px;background:var(--paper,#fffefa);color:var(--green,#183e32);border:1px solid #b7bfb2;border-radius:6px;padding:9px 11px;min-height:42px;caret-color:var(--cranberry,#9b3345)}.ds-field:focus-visible{outline:3px solid var(--gold,#ae7935);outline-offset:4px}"
+    },
+    {
+      "name": "Quick filter",
+      "kind": "chip",
+      "refersTo": "filter-chip",
+      "description": "Compact selection control, shown active.",
+      "html": "<button class=\"ds-chip\" aria-pressed=\"true\">Free events</button>",
+      "css": ".ds-chip{font-family:\"Source Sans 3\",sans-serif;font-size:12px;font-weight:600;min-height:30px;padding:3px 12px;border-radius:18px;border:1px solid var(--green,#183e32);background:var(--green,#183e32);color:white;cursor:pointer}.ds-chip:hover{background:#eeeee4;color:var(--green,#183e32)}.ds-chip:focus-visible{outline:3px solid var(--gold,#ae7935);outline-offset:4px}"
+    },
+    {
+      "name": "Verified badge",
+      "kind": "chip",
+      "refersTo": "verification-badge",
+      "description": "Explicit certainty label on a record.",
+      "html": "<span class=\"ds-badge\">Verified</span>",
+      "css": ".ds-badge{font-family:\"Source Sans 3\",sans-serif;display:inline-flex;align-items:center;gap:3px;font-size:11px;border-radius:4px;padding:2px 6px;color:#2e5c3c;background:#e8eddf}"
+    },
+    {
+      "name": "Unverified badge",
+      "kind": "chip",
+      "refersTo": "unverified-badge",
+      "description": "Explicit uncertainty label retained publicly.",
+      "html": "<span class=\"ds-uncertain\">Unverified</span>",
+      "css": ".ds-uncertain{font-family:\"Source Sans 3\",sans-serif;display:inline-flex;align-items:center;gap:3px;font-size:11px;border-radius:4px;padding:2px 6px;color:#785823;background:#f6eed9}"
+    },
+    {
+      "name": "Event record",
+      "kind": "card",
+      "refersTo": "event-card",
+      "description": "Flat paper record with date, title, and metadata.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-date\"><span>DEC</span><strong>12</strong></div><div><span class=\"ds-category\">Concert</span><h3><a href=\"#event-preview\">Holiday concert</a></h3><p>North Georgia \u00b7 7:00 PM</p></div></article>",
+      "css": ".ds-card{font-family:\"Source Sans 3\",sans-serif;display:flex;gap:17px;padding:21px;border:1px solid var(--border,#dcded3);border-radius:12px;background:var(--paper,#fffefa);color:#233d34;transition:background .2s ease-out}.ds-date{width:49px;flex-shrink:0;text-align:center}.ds-date span,.ds-category{font-size:11px;text-transform:uppercase;letter-spacing:.075em;color:var(--cranberry,#9b3345);font-weight:600}.ds-date strong{display:block;font:400 33px/1.25 Lora,serif;font-variant-numeric:tabular-nums}.ds-card h3{font:400 20px/1.3 Lora,serif;letter-spacing:-.01em;margin:7px 0 0}.ds-card a{color:inherit;text-decoration:none;text-underline-offset:4px}.ds-card a:hover{color:var(--cranberry,#9b3345);text-decoration:underline}.ds-card a:focus-visible{outline:3px solid var(--gold,#ae7935);outline-offset:4px}.ds-card p{font-size:13px;color:var(--muted,#606b60);margin:8px 0 0}@media(prefers-reduced-motion:reduce){.ds-card{transition:none}}"
+    },
+    {
+      "name": "View navigation",
+      "kind": "nav",
+      "description": "Transparent view tabs with cranberry selection line.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Event views\"><button class=\"ds-current\" aria-current=\"page\">Discover</button><button>Calendar</button></nav>",
+      "css": ".ds-nav{display:flex;gap:25px;border-bottom:1px solid var(--border,#dcded3)}.ds-nav button{font-family:\"Source Sans 3\",sans-serif;font-size:16px;font-weight:600;border:0;border-bottom:3px solid transparent;border-radius:0;background:transparent;padding:12px 3px 15px;color:var(--muted,#606b60);cursor:pointer}.ds-nav .ds-current{color:var(--green,#183e32);border-bottom-color:var(--cranberry,#9b3345)}.ds-nav button:hover{background:transparent}.ds-nav button:focus-visible{outline:3px solid var(--gold,#ae7935);outline-offset:4px}",
+      "refersTo": "view-navigation"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Local Holiday Field Guide",
+    "overview": "A warm, understated guide whose holiday character comes from cream, evergreen, cranberry, locally bundled type, and small outline icons. It is a working calendar with readable records. Quiet paper surfaces support comparison and clearly labeled certainty.",
+    "keyCharacteristics": [
+      "Warm paper and evergreen structure",
+      "Literary headings with practical controls",
+      "Visible verification and keyboard focus",
+      "Quiet interaction feedback"
+    ],
+    "rules": [
+      {
+        "name": "The Visible Certainty Rule",
+        "body": "Pair status color with explicit Verified or Unverified text.",
+        "section": "colors"
+      },
+      {
+        "name": "The Scan Rule",
+        "body": "Use tabular numerals for dates, times, counts, and calendar day numbers.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Surface Rule",
+        "body": "Reserve shadows for floating controls and geographic markers.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do preserve cream, evergreen, and cranberry across views.",
+      "Do retain local Lora and Source Sans 3 typography.",
+      "Do preserve visible keyboard focus and reduced-motion support."
+    ],
+    "donts": [
+      "Don't add decorative card shadows.",
+      "Don't replace the established identity with synthetic photography.",
+      "Don't convey verification solely through color."
+    ]
+  }
+}

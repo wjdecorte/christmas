@@ -1,0 +1,35 @@
+services:
+  app:
+    image: ${CHRISTMAS_IMAGE:-ghcr.io/wjdecorte/christmas:latest}
+    ports:
+      - "${BIND_ADDRESS:-0.0.0.0}:${PORT:-8090}:8090"
+    environment:
+      DATABASE_PATH: /data/events.sqlite3
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+      ADMIN_PASSWORD_HASH: ${ADMIN_PASSWORD_HASH:-}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      GEOCODER_USER_AGENT: ${GEOCODER_USER_AGENT:-}
+      GEOCODER_URL: ${GEOCODER_URL:-https://nominatim.openstreetmap.org/search}
+      TZ: America/New_York
+    volumes:
+      - ${DATA_DIR:-/volume1/docker/christmas-events}:/data
+    user: "${APP_UID:-1000}:${APP_GID:-1000}"
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8090/api/health',timeout=4)"]
+      interval: 30s
+      timeout: 5s
+      start_period: 20s
+      retries: 3

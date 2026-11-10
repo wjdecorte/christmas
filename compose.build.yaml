@@ -1,0 +1,5 @@
+# Optional local source build; the default Compose file pulls from GHCR.
+services:
+  app:
+    build: .
+    image: north-georgia-holiday-events:local
