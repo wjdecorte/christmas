@@ -1,23 +1,33 @@
 ---
 name: North Georgia Holiday Events
-description: A warm, understated holiday field guide for a local calendar.
+description: A colorful Christmas field guide in red, green, silver and gold.
 colors:
-  evergreen: "#183e32"
-  cranberry: "#9b3345"
-  gold: "#ae7935"
-  cream: "#f8f5ee"
-  paper: "#fffefa"
-  ink: "#233d34"
-  muted: "#606b60"
-  border: "#dcded3"
-  field-border: "#b7bfb2"
-  quiet-surface: "#eeeee4"
-  selected-surface: "#e8efdf"
-  selected-border: "#527063"
+  evergreen: "#0f5138"
+  cranberry: "#b32339"
+  gold: "#8a6419"
+  cream: "#f7f7f4"
+  paper: "#ffffff"
+  ink: "#183b2a"
+  muted: "#56665f"
+  border: "#d6dde1"
+  field-border: "#a8b6b1"
+  quiet-surface: "#edf1f4"
+  selected-surface: "#e5f0e9"
+  selected-border: "#0f5138"
   verified-ink: "#2e5c3c"
   verified-surface: "#e8eddf"
   unverified-ink: "#785823"
   unverified-surface: "#f6eed9"
+  masthead-red: "#a91f35"
+  gold-bright: "#edc96c"
+  gold-surface: "#fbf2da"
+  silver: "#d8e0e8"
+  silver-surface: "#edf1f4"
+  red-surface: "#fbecef"
+  green-surface: "#e5f0e9"
+  category-gold: "#855b11"
+  category-silver: "#405769"
+  category-green: "#175136"
   primary-hover: "#2c5843"
 typography:
   display:
@@ -60,6 +70,8 @@ rounded:
   fieldset: "8px"
   surface: "12px"
   chip: "18px"
+  intro: "14px"
+  brand: "11px"
 spacing:
   inline: "8px"
   compact: "12px"
@@ -119,34 +131,35 @@ components:
 
 **Creative North Star: “The Local Holiday Field Guide”**
 
-A warm, understated guide whose holiday character comes from cream, evergreen, cranberry, locally bundled type, and small outline icons. It is a working calendar with readable records, rather than an image-led promotional surface. The approved identity is retained from the original design note; this document captures the implemented system in `frontend/src/style.css`.
+A colorful Christmas guide whose identity comes from a Christmas-red masthead, evergreen seasonal panels, silver quiet surfaces and gold highlights. Jason's November 11, 2026 request supersedes the earlier understated palette while retaining the local field-guide character, typography, layouts and functionality. This document captures the implemented visual system in `frontend/src/style.css` and the shared icon in `frontend/public/favicon.svg`.
 
 **Key Characteristics:**
-- Warm paper surfaces with restrained borders and gently rounded corners.
+- Red identity, green wayfinding, silver support surfaces and gold highlights.
 - Literary serif headings paired with practical sans-serif controls.
-- Dense enough to compare outings, with visibly labeled verification status.
-- Quiet interaction feedback and clearly visible keyboard focus.
+- Flat white event records with colored date and category chips.
+- Clearly labeled verification status and visible keyboard focus.
+- A Christmas tree-and-star icon shared by the masthead, footer and browser favicon.
 
 ## Colors
 
-The palette combines evergreen structure, cranberry emphasis, warm cream surroundings, and paper record surfaces. Frontmatter contains normative reusable values.
+The festive palette uses red and green for structure and emphasis, silver for quiet surfaces and gold for highlights. Frontmatter contains normative reusable values; the `cream` token name remains for the now pale neutral page canvas.
 
 ### Primary
-- **Evergreen:** masthead, primary actions, selected filters, map pins, and control text.
+- **Evergreen:** seasonal intro, map heading, primary actions, selected filters, selected date stamps and control text.
+- **Christmas Red / Cranberry:** masthead identity (`masthead-red`), date stamps, default category chips, active navigation text, counts and link hover (`cranberry`).
 
 ### Secondary
-- **Cranberry:** category labels, month labels, active navigation underline, small icon accents, and link hover.
-
-### Tertiary
-- **Muted Gold:** keyboard focus outlines; it is a functional accent.
+- **Gold / Bright Gold / Gold Surface:** dark gold keyboard focus and active navigation underline; bright gold masthead rule, map-heading icon and tree star; pale gold highlights and today's calendar cell.
+- **Silver / Silver Surface:** quiet category chips, browse controls, map legend and map note. Silver is a supporting surface and icon detail, not body text on white.
+- **Red Surface / Green Surface:** seasonal summary tiles and category chips; green also marks selected records and venue panels.
 
 ### Neutral
-- **Cream / Paper:** page canvas and contained working surfaces respectively.
+- **Cream / Paper:** pale neutral page canvas and white contained working surfaces respectively.
 - **Ink / Muted:** main text and supporting descriptions or metadata.
-- **Border / Field Border:** quiet section divisions and stronger editable field outlines.
-- **Quiet Surface / Selected Surface / Selected Border:** secondary grouping and synchronized record selection.
+- **Border / Field Border:** silver section divisions and stronger editable field outlines.
+- **Quiet Surface / Selected Surface / Selected Border:** silver secondary grouping and green synchronized record selection.
 - **Verified Ink / Verified Surface:** green verification label pairing.
-- **Unverified Ink / Unverified Surface:** amber uncertainty label pairing.
+- **Unverified Ink / Unverified Surface:** amber uncertainty label pairing, distinct from decorative category chips.
 
 **The Visible Certainty Rule.** Pair status color with explicit “Verified” or “Unverified” text. Preserve that distinction in list records and calendar entries.
 
@@ -155,14 +168,14 @@ The palette combines evergreen structure, cranberry emphasis, warm cream surroun
 **Display Font:** locally bundled Lora, with serif fallback.
 **Body Font:** locally bundled Source Sans 3, with sans-serif fallback.
 
-Lora brings the restrained holiday identity; Source Sans 3 keeps dates, filters, labels, and operational details easy to scan. Headings use balanced wrapping and regular weight. The hierarchy is contextual rather than a mathematical scale.
+Lora brings the literary holiday identity; Source Sans 3 keeps dates, filters, labels, and operational details easy to scan. Headings use balanced wrapping and regular weight. The hierarchy is contextual rather than a mathematical scale.
 
 - **Display:** page title; the mobile intro settles at (29px). Detail titles use (clamp(28px, 3.5vw, 42px)).
 - **Headline:** section headings; compact result headings use (22px), map headings (21px).
 - **Title:** event names; medium widths use (18px), mobile restores (20px).
 - **Body:** base reading text; detail descriptions use (19px) with (1.65) line-height. Detail paragraphs cap at (72ch).
 - **Label:** form labels and control emphasis. Metadata uses (12–13px); verification labels use (11px).
-- **Category:** uppercase, spaced cranberry text. Month stamps use (0.08em) tracking and a Lora date numeral (33px/1.25).
+- **Category:** uppercase, spaced category text on colored chips. Month stamps use (0.08em) tracking and a Lora date numeral (33px/1.25).
 
 **The Scan Rule.** Use tabular numerals for dates, times, counts, and calendar day numbers.
 
@@ -178,7 +191,7 @@ Spacing is contextual: controls use compact gaps, panels use generous padding, a
 
 ## Elevation & Depth
 
-Surfaces are flat at rest. Tone, thin borders, and spacing convey hierarchy; event records do not carry decorative shadows. The floating filter popover has a structural shadow (`0 8px 25px #183e321c`), while map pins use a small legibility shadow (`0 2px 6px #183e3244`). These are the only authored shadow roles.
+Surfaces are flat at rest. Tone, thin borders, and spacing convey hierarchy; event records do not carry decorative shadows. The floating filter popover has a structural shadow (`0 8px 25px #0f51381c`), while map pins use a small legibility shadow (`0 2px 6px #0f513844`). These are the only authored shadow roles.
 
 **The Flat Surface Rule.** Reserve shadows for floating controls and geographic markers; preserve quiet record and panel surfaces.
 
@@ -196,7 +209,7 @@ All keyboard targets use a gold outline (3px) with offset (4px). Preserve this o
 
 ### Chips and Verification Badges
 
-Quick filters use (12px) text, (30px) minimum height, and outlined transparent resting surfaces. Active filters fill evergreen with white text. Verification badges pair explicit text with their semantic foreground/background and compact badge radius. Never substitute an unlabeled colored dot for certainty.
+Quick filters use (12px) text, (30px) minimum height, and outlined transparent resting surfaces. Active filters fill evergreen with white text. Category chips default to red on pale red; concerts/theatre use gold, lights/ice skating silver, and markets/festivals green. Date stamps fill red with white month/day text and switch to evergreen when the record is selected. Verification badges pair explicit text with their semantic foreground/background and compact badge radius. Never substitute an unlabeled colored dot for certainty.
 
 ### Cards / Containers
 
@@ -208,16 +221,20 @@ Paper fields use evergreen text, Field Border, field corners, and a (42px) minim
 
 ### Navigation
 
-The evergreen masthead holds the Lora identity and understated supporting copy. The view navigation uses (25px) gaps, muted resting labels, evergreen active text, and cranberry active underline. Tabs retain transparent backgrounds. On mobile the header note and admin text label hide, retaining the admin icon action.
+The Christmas-red masthead has a (3px) bright-gold bottom rule and holds the Lora identity with pale supporting copy. The view navigation uses (25px) gaps, muted resting labels, cranberry active text, and a dark-gold active underline. Tabs retain transparent backgrounds. On mobile the header note and admin text label hide, retaining the admin icon action.
 
 ### Event Map and Calendar
 
-The map is a bordered, clipped paper panel with heading, canvas, legend, and note. Circular markers use category colors and accessible record synchronization. Category marker variants include cranberry concerts, brown parades, teal markets, and purple lights; these are map semantics, not new global brand accents. Calendar cells retain quiet grid borders, tabular day numbers, and compact event buttons; uncertain entries use amber treatment and supporting information.
+The map is a bordered, clipped white panel with an evergreen heading, white title, bright-gold icon, and silver legend and note. Circular markers use category colors and accessible record synchronization. Category marker variants include red concerts and parades, green markets, and gold lights; these are map semantics, not new global brand accents. Calendar cells retain quiet grid borders, tabular day numbers, and compact event buttons. Weekday headings fill evergreen with white labels; today uses pale gold. Event buttons use pale green, while uncertain entries use gold treatment and supporting information.
+
+### Seasonal Identity
+
+Use the same tree-and-star SVG for the browser favicon and the masthead/footer marks: evergreen rounded tile, white tree, gold star and trunk, red and silver ornaments. The masthead mark is (46px), (40px) on mobile, with a thin bright-gold border. Keep the SVG silhouette legible at favicon size. The seasonal intro uses evergreen with pale text and subtle decorative snowflake/star linework; summary shortcuts use pale red, green and gold tiles with explicit labels.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** preserve the approved cream, evergreen, and cranberry identity across discovery, calendar, detail, and admin views.
+- **Do** preserve the approved Christmas red, green, silver and gold identity across discovery, calendar, detail, and admin views.
 - **Do** use locally bundled Lora and Source Sans 3 with the established hierarchy.
 - **Do** keep verification labels, keyboard focus, and selected records explicit.
 - **Do** honor reduced-motion preferences by disabling transitions, animation, and smooth scrolling.

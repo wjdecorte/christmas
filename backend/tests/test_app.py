@@ -299,3 +299,16 @@ def test_backup_restore_revokes_sessions(client, auth, tmp_path, monkeypatch):
     main()
     assert client.get("/api/events/sample").status_code == 404
     assert client.get("/api/auth/session").status_code == 401
+
+
+def test_favicon_serves_svg_instead_of_spa_html(client, tmp_path, monkeypatch):
+    import app.main as main_module
+    from pathlib import Path
+
+    source = Path(__file__).resolve().parents[2] / "frontend/public/favicon.svg"
+    (tmp_path / "favicon.svg").write_bytes(source.read_bytes())
+    monkeypatch.setattr(main_module, "DIST", tmp_path)
+    response = client.get("/favicon.svg")
+    assert response.status_code == 200
+    assert response.headers["content-type"].startswith("image/svg+xml")
+    assert response.content == source.read_bytes()

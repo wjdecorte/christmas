@@ -1,17 +1,23 @@
 @import "tailwindcss";
 :root {
   font-family: "Source Sans 3", sans-serif;
-  color: #233d34;
-  background: #f8f5ee;
+  color: #183b2a;
+  background: #f7f7f4;
   font-synthesis: none;
   font-size: 16px;
   line-height: 1.5;
-  --green: #183e32;
-  --cranberry: #9b3345;
-  --border: #dcded3;
-  --muted: #606b60;
-  --paper: #fffefa;
-  --gold: #ae7935;
+  --green: #0f5138;
+  --cranberry: #b32339;
+  --border: #d6dde1;
+  --muted: #56665f;
+  --paper: #ffffff;
+  --gold: #8a6419;
+  --gold-bright: #edc96c;
+  --gold-surface: #fbf2da;
+  --silver: #d8e0e8;
+  --silver-surface: #edf1f4;
+  --red-surface: #fbecef;
+  --green-surface: #e5f0e9;
 }
 * {
   box-sizing: border-box;
@@ -53,7 +59,7 @@ button {
   min-height: 40px;
 }
 button:hover {
-  background: #eeeee4;
+  background: #edf1f4;
 }
 button:disabled {
   opacity: 0.55;
@@ -71,7 +77,7 @@ select,
 textarea {
   background: var(--paper);
   color: var(--green);
-  border: 1px solid #b7bfb2;
+  border: 1px solid #a8b6b1;
   border-radius: 6px;
   padding: 9px 11px;
   min-height: 42px;
@@ -132,7 +138,7 @@ p {
   height: 9px;
 }
 ::-webkit-scrollbar-track {
-  background: #f8f5ee;
+  background: #f7f7f4;
 }
 ::-webkit-scrollbar-thumb {
   background: #a6b3a2;
@@ -165,7 +171,8 @@ strong {
   top: 4px;
 }
 .masthead {
-  background: var(--green);
+  background: #a91f35;
+  border-bottom: 3px solid var(--gold-bright);
   color: #fffdf4;
 }
 .masthead-inner {
@@ -201,17 +208,17 @@ strong {
 }
 .header-note {
   margin-left: auto;
-  color: #cbd8cb;
+  color: #f4dce2;
   font-size: 14px;
 }
 .admin-link {
   background: transparent;
-  border-color: #527063;
-  color: #eef1e4;
+  border-color: #e39ba7;
+  color: #ffffff;
   font-size: 14px;
 }
 .admin-link:hover {
-  background: #2b5143;
+  background: #8e182b;
 }
 main {
   max-width: 1424px;
@@ -219,19 +226,28 @@ main {
   margin: auto;
 }
 .page-intro {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--green);
+  color: white;
+  border-radius: 14px;
+  margin: 26px 0 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: 43px 0 30px;
+  padding: 32px;
 }
 .page-intro p {
+  color: #dcebe2;
   margin-top: 12px;
   font-size: 17px;
 }
 .year-select {
+  position: relative;
   min-width: 112px;
-  color: var(--muted);
+  color: #f3db9e;
   font-size: 12px;
   letter-spacing: 0.03em;
 }
@@ -255,8 +271,8 @@ main {
   color: var(--muted);
 }
 .view-nav button.active {
-  color: var(--green);
-  border-bottom-color: var(--cranberry);
+  color: var(--cranberry);
+  border-bottom-color: var(--gold);
 }
 .season-strip {
   display: grid;
@@ -265,7 +281,8 @@ main {
   align-items: center;
   margin: 26px 0 24px;
   padding: 20px 24px;
-  background: #eeeee3;
+  background: var(--paper);
+  border: 1px solid var(--border);
   border-radius: 12px;
 }
 .season-strip > div {
@@ -289,11 +306,11 @@ main {
   background: transparent;
   padding: 4px 10px;
   gap: 13px;
-  border-left: 1px solid #cdd4c5;
+  border-left: 1px solid #d6dde1;
 }
 .season-strip button:hover,
 .season-strip button.chosen {
-  background: #dde5d6;
+  background: #e3eee7;
   border-radius: 5px;
 }
 .season-strip button > svg:first-child {
@@ -321,10 +338,9 @@ main {
 }
 .filters {
   display: grid;
-  grid-template-columns: minmax(200px, 1.8fr) minmax(140px, 1fr) minmax(
-      175px,
-      1fr
-    ) auto;
+  grid-template-columns:
+    minmax(200px, 1.8fr) minmax(140px, 1fr) minmax(175px, 1fr)
+    auto;
   gap: 10px;
   align-items: center;
 }
@@ -374,7 +390,7 @@ main {
   gap: 12px;
   background: var(--paper);
   border: 1px solid var(--border);
-  box-shadow: 0 8px 25px #183e321c;
+  box-shadow: 0 8px 25px #0f51381c;
   border-radius: 12px;
 }
 .check {
@@ -401,7 +417,7 @@ main {
 .result-count {
   font-size: 13px;
   color: var(--muted);
-  background: #ebece2;
+  background: #e5ece8;
   padding: 3px 9px;
   border-radius: 20px;
   white-space: nowrap;
@@ -469,11 +485,17 @@ main {
   transition: background 0.2s ease-out;
 }
 .event-card.selected {
-  background: #e8efdf;
-  border-color: #527063;
+  background: #e5f0e9;
+  border-color: #357b58;
 }
 .date-stamp {
   width: 49px;
+  min-height: 66px;
+  align-self: flex-start;
+  background: var(--cranberry);
+  color: white;
+  border-radius: 8px;
+  padding: 7px 2px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -484,7 +506,7 @@ main {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--cranberry);
+  color: white;
   font-weight: 600;
 }
 .date-stamp strong {
@@ -599,6 +621,8 @@ main {
   top: 20px;
 }
 .map-heading {
+  background: var(--green);
+  color: white;
   padding: 20px;
   display: flex;
   justify-content: space-between;
@@ -609,11 +633,12 @@ main {
   font-size: 21px;
 }
 .map-heading p {
+  color: #dcebe2;
   font-size: 13px;
   margin-top: 5px;
 }
 .map-heading > svg {
-  color: var(--cranberry);
+  color: var(--gold-bright);
 }
 .map-canvas {
   height: 440px;
@@ -646,19 +671,19 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 2px 6px #183e3244;
+  box-shadow: 0 2px 6px #0f513844;
 }
 .pin-concert {
-  background: #9b3345;
+  background: #b32339;
 }
 .pin-parade {
-  background: #8a5b22;
+  background: #a61d34;
 }
 .pin-market {
-  background: #396c64;
+  background: #0f6847;
 }
 .pin-lights {
-  background: #66509b;
+  background: #8a6419;
 }
 .leaflet-popup-content {
   font:
@@ -707,7 +732,7 @@ main {
 }
 .count-links button {
   border: 0;
-  background: #eeeee4;
+  background: #edf1f4;
   min-height: 33px;
   font-size: 13px;
   font-weight: 400;
@@ -715,7 +740,7 @@ main {
 }
 .count-links button span {
   color: var(--muted);
-  border-left: 1px solid #c8cebe;
+  border-left: 1px solid #c5d0d8;
   padding-left: 8px;
   font-variant-numeric: tabular-nums;
 }
@@ -800,7 +825,7 @@ main {
   font-variant-numeric: tabular-nums;
 }
 .calendar-day.today {
-  background: #e8efdf;
+  background: var(--gold-surface);
 }
 .calendar-day.today time {
   font-weight: 600;
@@ -888,7 +913,7 @@ main {
   margin: 4px 0 0;
 }
 .venue-panel {
-  background: #eeeee4;
+  background: var(--green-surface);
   padding: 28px;
   border-radius: 12px;
   align-self: start;
@@ -938,7 +963,7 @@ main {
 .primary {
   background: var(--green);
   border-color: var(--green);
-  color: #fffefa;
+  color: #ffffff;
 }
 .primary:hover {
   background: #2c5843;
@@ -1141,7 +1166,14 @@ footer p span {
     padding: 0 18px;
   }
   .page-intro {
-    padding: 28px 0 23px;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: var(--green);
+    color: white;
+    border-radius: 14px;
+    margin: 26px 0 18px;
+    padding: 24px 20px;
     align-items: flex-start;
     gap: 12px;
   }
@@ -1149,10 +1181,12 @@ footer p span {
     font-size: 29px;
   }
   .page-intro p {
+    color: #dcebe2;
     font-size: 14px;
     margin-top: 10px;
   }
   .year-select {
+    position: relative;
     min-width: 77px;
   }
   .year-select select {
@@ -1184,7 +1218,7 @@ footer p span {
     min-height: 45px;
   }
   .season-strip button:nth-child(2n) {
-    border-left: 1px solid #cdd4c5;
+    border-left: 1px solid #d6dde1;
   }
   .season-strip strong {
     font-size: 13px;
@@ -1435,5 +1469,218 @@ footer p span {
   }
   .calendar-grid.month .calendar-event small {
     font-size: 10px;
+  }
+}
+
+/* Christmas palette: red for identity, green for wayfinding, gold for highlights,
+   silver for quiet surfaces. Labels and icons continue to carry status meanings. */
+.holiday-mark,
+.footer-mark {
+  flex-shrink: 0;
+}
+.holiday-mark {
+  border: 1px solid var(--gold-bright);
+  border-radius: 11px;
+}
+.holiday-flurries {
+  position: absolute;
+  inset: 0 90px 0 auto;
+  width: 300px;
+  z-index: -1;
+  pointer-events: none;
+  color: #adc5b8;
+  opacity: 0.13;
+}
+.holiday-flurries svg:nth-child(1) {
+  position: absolute;
+  width: 145px;
+  height: 145px;
+  right: 0;
+  top: -35px;
+  stroke-width: 1;
+}
+.holiday-flurries svg:nth-child(2) {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  left: 0;
+  bottom: -17px;
+  stroke-width: 1;
+}
+.holiday-flurries svg:nth-child(3) {
+  position: absolute;
+  width: 43px;
+  height: 43px;
+  left: 110px;
+  bottom: 20px;
+  color: var(--gold-bright);
+}
+.season-strip > div {
+  color: var(--green);
+}
+.season-strip button {
+  padding: 12px;
+  border-left: 0;
+  border-radius: 8px;
+}
+.season-strip button:nth-of-type(1) {
+  background: var(--red-surface);
+  color: #982036;
+}
+.season-strip button:nth-of-type(2) {
+  background: var(--green-surface);
+  color: #175136;
+}
+.season-strip button:nth-of-type(3) {
+  background: var(--gold-surface);
+  color: #755115;
+}
+.season-strip button small {
+  color: inherit;
+}
+.season-strip button > svg:first-child {
+  color: inherit;
+}
+.season-strip button:hover,
+.season-strip button.chosen {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+.season-strip button:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 3px;
+}
+.stat-number {
+  color: var(--cranberry);
+}
+.category {
+  background: var(--red-surface);
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+.category-concert .category,
+.category-theatre .category {
+  color: #855b11;
+  background: var(--gold-surface);
+}
+.category-lights .category,
+.category-ice-skating .category {
+  color: #405769;
+  background: var(--silver-surface);
+}
+.category-market .category,
+.category-festival .category {
+  color: #175136;
+  background: var(--green-surface);
+}
+.event-card.selected {
+  border-color: var(--green);
+}
+.event-card:hover {
+  border-color: #a8b6b1;
+}
+.event-card.selected .date-stamp {
+  background: var(--green);
+}
+.map-legend {
+  background: var(--silver-surface);
+  padding-bottom: 14px;
+}
+.map-note {
+  background: var(--silver-surface);
+}
+.weekday {
+  background: var(--green);
+  color: white;
+  border-color: #357b58;
+}
+.calendar-day.today time {
+  color: var(--cranberry);
+}
+.calendar-event {
+  color: #175136;
+  background: var(--green-surface);
+}
+.calendar-event.uncertain {
+  color: #755115;
+  background: var(--gold-surface);
+}
+.count-links button {
+  background: var(--silver-surface);
+}
+.count-links button:hover {
+  background: var(--green-surface);
+}
+.count-links button span {
+  color: var(--cranberry);
+}
+footer {
+  border-top-color: #bd9a4b;
+}
+::selection {
+  background: var(--gold-bright);
+  color: #183b2a;
+}
+@media (max-width: 1100px) {
+  .season-strip {
+    gap: 12px;
+  }
+  .season-strip button {
+    padding: 10px;
+  }
+}
+@media (max-width: 760px) {
+  .page-intro {
+    margin-top: 20px;
+  }
+  .holiday-mark {
+    width: 40px;
+    height: 40px;
+  }
+  .holiday-flurries {
+    right: 0;
+    width: 220px;
+  }
+  .season-strip button {
+    padding: 9px;
+  }
+  .season-strip button:nth-child(2n) {
+    border-left: 0;
+  }
+  .date-stamp {
+    padding: 6px 2px;
+    min-height: 60px;
+  }
+}
+
+@media (max-width: 760px) {
+  .page-intro {
+    display: block;
+    padding: 22px 20px;
+  }
+  .page-intro h1 {
+    padding-right: 0;
+  }
+  .page-intro p {
+    padding-right: 88px;
+  }
+  .page-intro .year-select {
+    position: absolute;
+    right: 20px;
+    bottom: 24px;
+    width: 77px;
+    min-width: 77px;
+  }
+  .season-strip {
+    padding: 13px;
+    gap: 11px;
+  }
+  .season-strip button {
+    gap: 8px;
+    padding: 8px;
+  }
+  .season-strip strong {
+    font-size: 12px;
   }
 }

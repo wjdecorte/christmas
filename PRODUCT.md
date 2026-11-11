@@ -13,7 +13,7 @@ LAN-only initially. Outbound internet permitted for maps, geocoding and source r
 ## Capabilities and Constraints
 Public read-only views; one protected administrator. Import/export CSV and JSON. Preserve unverified entries with public labels. Never invent coordinates or uncertain times and prices. Cache geocoding permanently; provide manual coordinate correction. Eastern Time.
 ## Brand Commitments
-North Georgia Holiday Events. Jason approved a warm, understated holiday guide: cream background, evergreen navigation, cranberry accents, list beside the map.
+North Georgia Holiday Events. Jason originally approved an understated holiday guide. On November 11, 2026, he requested a more colorful Christmas theme using red, green, silver and gold, plus an identifiable app/browser icon. Keep the event list beside the map.
 ## Evidence on Hand
 The pasted requirements supply the initial November/December 2026 event list. Official sources must support confirmation. No supplied imagery or brand assets.
 ## Product Principles

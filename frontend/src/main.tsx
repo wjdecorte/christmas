@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import { createRoot } from "react-dom/client";
 import {
-  Trees,
+  Snowflake,
   MapPin,
   Music,
   ArrowUpRight,
@@ -92,7 +92,7 @@ function EventCard({
   return (
     <article
       id={"event-" + event.id}
-      className={`event-card ${selected ? "selected" : ""}`}
+      className={`event-card category-${event.category} ${selected ? "selected" : ""}`}
     >
       <EventDate event={event} today={today} />
       <div className="event-body">
@@ -459,7 +459,13 @@ function App() {
               setView("discover");
             }}
           >
-            <Trees size={32} strokeWidth={1.5} />
+            <img
+              className="holiday-mark"
+              src="/favicon.svg"
+              width="46"
+              height="46"
+              alt=""
+            />
             <span>
               North Georgia<strong>Holiday Events</strong>
             </span>
@@ -480,6 +486,11 @@ function App() {
       </header>
       <main id="main">
         <div className="page-intro">
+          <div className="holiday-flurries" aria-hidden="true">
+            <Snowflake />
+            <Snowflake />
+            <Sparkles />
+          </div>
           <div>
             <h1>
               {view === "admin" && !detailId
@@ -837,7 +848,13 @@ function App() {
           </>
         )}
         <footer>
-          <Trees size={22} />
+          <img
+            className="footer-mark"
+            src="/favicon.svg"
+            width="34"
+            height="34"
+            alt=""
+          />
           <p>
             Made for a North Georgia Christmas.
             <span>

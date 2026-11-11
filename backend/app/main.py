@@ -511,6 +511,14 @@ def docs():
     return '<!doctype html><html><head><title>Holiday Events API</title><link rel="stylesheet" href="/api-docs/swagger-ui.css"></head><body><div id="swagger-ui"></div><script src="/api-docs/swagger-ui-bundle.js"></script><script src="/api-docs/init.js"></script></body></html>'
 
 
+@app.get("/favicon.svg", include_in_schema=False)
+def favicon():
+    icon = DIST / "favicon.svg"
+    if not icon.is_file():
+        raise HTTPException(404, "Icon is available after the frontend build")
+    return FileResponse(icon, media_type="image/svg+xml", headers={"Cache-Control": "public, max-age=3600"})
+
+
 if DIST.exists():
     app.mount("/api-docs", StaticFiles(directory=DIST / "api-docs"), name="api-docs")
     app.mount("/assets", StaticFiles(directory=DIST / "assets"), name="assets")

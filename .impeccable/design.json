@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-10T17:34:57.074551+00:00",
+  "generatedAt": "2026-11-11T15:07:30.008590+00:00",
   "title": "Design System: North Georgia Holiday Events",
   "extensions": {
     "colorMeta": {
@@ -10,19 +10,47 @@
       },
       "cranberry": {
         "role": "secondary",
-        "displayName": "Cranberry"
+        "displayName": "Christmas Red"
       },
       "gold": {
         "role": "tertiary",
-        "displayName": "Muted Gold"
+        "displayName": "Highlight Gold"
       },
       "cream": {
         "role": "neutral",
-        "displayName": "Warm Cream"
+        "displayName": "Pale Neutral Canvas"
       },
       "paper": {
         "role": "neutral",
         "displayName": "Paper"
+      },
+      "masthead-red": {
+        "role": "primary",
+        "displayName": "Masthead Red"
+      },
+      "gold-bright": {
+        "role": "secondary",
+        "displayName": "Bright Gold"
+      },
+      "gold-surface": {
+        "role": "secondary",
+        "displayName": "Pale Gold"
+      },
+      "silver": {
+        "role": "neutral",
+        "displayName": "Silver"
+      },
+      "silver-surface": {
+        "role": "neutral",
+        "displayName": "Silver Surface"
+      },
+      "red-surface": {
+        "role": "secondary",
+        "displayName": "Pale Red"
+      },
+      "green-surface": {
+        "role": "secondary",
+        "displayName": "Pale Green"
       }
     },
     "typographyMeta": {
@@ -38,12 +66,12 @@
     "shadows": [
       {
         "name": "filter-popover",
-        "value": "0 8px 25px #183e321c",
+        "value": "0 8px 25px #0f51381c",
         "purpose": "Structural separation for floating filters."
       },
       {
         "name": "map-pin",
-        "value": "0 2px 6px #183e3244",
+        "value": "0 2px 6px #0f513844",
         "purpose": "Marker legibility over map tiles."
       }
     ],
@@ -76,7 +104,7 @@
       "refersTo": "button-primary",
       "description": "Evergreen action for committing work.",
       "html": "<button class=\"ds-button ds-primary\">Save event</button>",
-      "css": ".ds-button{font-family:\"Source Sans 3\",sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--border,#dcded3);border-radius:7px;padding:8px 14px;font-size:16px;font-weight:600;min-height:40px;cursor:pointer;}.ds-button:focus-visible{outline:3px solid var(--gold,#ae7935);outline-offset:4px}.ds-primary{background:var(--green,#183e32);border-color:var(--green,#183e32);color:var(--paper,#fffefa)}.ds-primary:hover{background:#2c5843}.ds-primary:disabled{opacity:.55;cursor:wait}"
+      "css": ".ds-button{font-family:\"Source Sans 3\",sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--border,#d6dde1);border-radius:7px;padding:8px 14px;font-size:16px;font-weight:600;min-height:40px;cursor:pointer;}.ds-button:focus-visible{outline:3px solid var(--gold,#8a6419);outline-offset:4px}.ds-primary{background:var(--green,#0f5138);border-color:var(--green,#0f5138);color:var(--paper,#ffffff)}.ds-primary:hover{background:#2c5843}.ds-primary:disabled{opacity:.55;cursor:wait}"
     },
     {
       "name": "Secondary button",
@@ -84,7 +112,7 @@
       "refersTo": "button-secondary",
       "description": "Quiet supporting action.",
       "html": "<button class=\"ds-button ds-secondary\">Previous month</button>",
-      "css": ".ds-button{font-family:\"Source Sans 3\",sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--border,#dcded3);border-radius:7px;padding:8px 14px;font-size:16px;font-weight:600;min-height:40px;cursor:pointer;}.ds-button:focus-visible{outline:3px solid var(--gold,#ae7935);outline-offset:4px}.ds-secondary{background:var(--paper,#fffefa);color:var(--green,#183e32)}.ds-secondary:hover{background:#eeeee4}.ds-secondary:disabled{opacity:.55;cursor:wait}"
+      "css": ".ds-button{font-family:\"Source Sans 3\",sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--border,#d6dde1);border-radius:7px;padding:8px 14px;font-size:16px;font-weight:600;min-height:40px;cursor:pointer;}.ds-button:focus-visible{outline:3px solid var(--gold,#8a6419);outline-offset:4px}.ds-secondary{background:var(--paper,#ffffff);color:var(--green,#0f5138)}.ds-secondary:hover{background:#edf1f4}.ds-secondary:disabled{opacity:.55;cursor:wait}"
     },
     {
       "name": "Text field",
@@ -92,7 +120,7 @@
       "refersTo": "field",
       "description": "Editable paper surface with visible focus.",
       "html": "<label class=\"ds-label\">Event title<input class=\"ds-field\" placeholder=\"Enter event title\"></label>",
-      "css": ".ds-label{font-family:\"Source Sans 3\",sans-serif;display:flex;flex-direction:column;gap:5px;font-size:14px;font-weight:600;color:var(--green,#183e32)}.ds-field{font-family:\"Source Sans 3\",sans-serif;font-size:16px;background:var(--paper,#fffefa);color:var(--green,#183e32);border:1px solid #b7bfb2;border-radius:6px;padding:9px 11px;min-height:42px;caret-color:var(--cranberry,#9b3345)}.ds-field:focus-visible{outline:3px solid var(--gold,#ae7935);outline-offset:4px}"
+      "css": ".ds-label{font-family:\"Source Sans 3\",sans-serif;display:flex;flex-direction:column;gap:5px;font-size:14px;font-weight:600;color:var(--green,#0f5138)}.ds-field{font-family:\"Source Sans 3\",sans-serif;font-size:16px;background:var(--paper,#ffffff);color:var(--green,#0f5138);border:1px solid #a8b6b1;border-radius:6px;padding:9px 11px;min-height:42px;caret-color:var(--cranberry,#b32339)}.ds-field:focus-visible{outline:3px solid var(--gold,#8a6419);outline-offset:4px}"
     },
     {
       "name": "Quick filter",
@@ -100,7 +128,7 @@
       "refersTo": "filter-chip",
       "description": "Compact selection control, shown active.",
       "html": "<button class=\"ds-chip\" aria-pressed=\"true\">Free events</button>",
-      "css": ".ds-chip{font-family:\"Source Sans 3\",sans-serif;font-size:12px;font-weight:600;min-height:30px;padding:3px 12px;border-radius:18px;border:1px solid var(--green,#183e32);background:var(--green,#183e32);color:white;cursor:pointer}.ds-chip:hover{background:#eeeee4;color:var(--green,#183e32)}.ds-chip:focus-visible{outline:3px solid var(--gold,#ae7935);outline-offset:4px}"
+      "css": ".ds-chip{font-family:\"Source Sans 3\",sans-serif;font-size:12px;font-weight:600;min-height:30px;padding:3px 12px;border-radius:18px;border:1px solid var(--green,#0f5138);background:var(--green,#0f5138);color:white;cursor:pointer}.ds-chip:hover{background:#edf1f4;color:var(--green,#0f5138)}.ds-chip:focus-visible{outline:3px solid var(--gold,#8a6419);outline-offset:4px}"
     },
     {
       "name": "Verified badge",
@@ -122,27 +150,35 @@
       "name": "Event record",
       "kind": "card",
       "refersTo": "event-card",
-      "description": "Flat paper record with date, title, and metadata.",
+      "description": "Flat white record with a red date stamp and gold concert category chip.",
       "html": "<article class=\"ds-card\"><div class=\"ds-date\"><span>DEC</span><strong>12</strong></div><div><span class=\"ds-category\">Concert</span><h3><a href=\"#event-preview\">Holiday concert</a></h3><p>North Georgia \u00b7 7:00 PM</p></div></article>",
-      "css": ".ds-card{font-family:\"Source Sans 3\",sans-serif;display:flex;gap:17px;padding:21px;border:1px solid var(--border,#dcded3);border-radius:12px;background:var(--paper,#fffefa);color:#233d34;transition:background .2s ease-out}.ds-date{width:49px;flex-shrink:0;text-align:center}.ds-date span,.ds-category{font-size:11px;text-transform:uppercase;letter-spacing:.075em;color:var(--cranberry,#9b3345);font-weight:600}.ds-date strong{display:block;font:400 33px/1.25 Lora,serif;font-variant-numeric:tabular-nums}.ds-card h3{font:400 20px/1.3 Lora,serif;letter-spacing:-.01em;margin:7px 0 0}.ds-card a{color:inherit;text-decoration:none;text-underline-offset:4px}.ds-card a:hover{color:var(--cranberry,#9b3345);text-decoration:underline}.ds-card a:focus-visible{outline:3px solid var(--gold,#ae7935);outline-offset:4px}.ds-card p{font-size:13px;color:var(--muted,#606b60);margin:8px 0 0}@media(prefers-reduced-motion:reduce){.ds-card{transition:none}}"
+      "css": ".ds-card{font-family:\"Source Sans 3\",sans-serif;display:flex;gap:17px;padding:21px;border:1px solid var(--border,#d6dde1);border-radius:12px;background:var(--paper,#ffffff);color:#183b2a;transition:background .2s ease-out}.ds-date{width:49px;min-height:66px;flex-shrink:0;text-align:center;background:var(--cranberry,#b32339);color:white;border-radius:8px;padding:1px 2px 7px}.ds-date span,.ds-category{font-size:11px;text-transform:uppercase;letter-spacing:.075em;color:var(--cranberry,#b32339);font-weight:600}.ds-date strong{display:block;font:400 33px/1.25 Lora,serif;font-variant-numeric:tabular-nums}.ds-card h3{font:400 20px/1.3 Lora,serif;letter-spacing:-.01em;margin:7px 0 0}.ds-card a{color:inherit;text-decoration:none;text-underline-offset:4px}.ds-card a:hover{color:var(--cranberry,#b32339);text-decoration:underline}.ds-card a:focus-visible{outline:3px solid var(--gold,#8a6419);outline-offset:4px}.ds-card p{font-size:13px;color:var(--muted,#56665f);margin:8px 0 0}@media(prefers-reduced-motion:reduce){.ds-card{transition:none}} .ds-date span{color:white}.ds-category{color:#855b11;background:var(--gold-surface,#fbf2da);padding:2px 7px;border-radius:4px}"
     },
     {
       "name": "View navigation",
       "kind": "nav",
-      "description": "Transparent view tabs with cranberry selection line.",
+      "description": "Transparent view tabs with red active text and a gold selection line.",
       "html": "<nav class=\"ds-nav\" aria-label=\"Event views\"><button class=\"ds-current\" aria-current=\"page\">Discover</button><button>Calendar</button></nav>",
-      "css": ".ds-nav{display:flex;gap:25px;border-bottom:1px solid var(--border,#dcded3)}.ds-nav button{font-family:\"Source Sans 3\",sans-serif;font-size:16px;font-weight:600;border:0;border-bottom:3px solid transparent;border-radius:0;background:transparent;padding:12px 3px 15px;color:var(--muted,#606b60);cursor:pointer}.ds-nav .ds-current{color:var(--green,#183e32);border-bottom-color:var(--cranberry,#9b3345)}.ds-nav button:hover{background:transparent}.ds-nav button:focus-visible{outline:3px solid var(--gold,#ae7935);outline-offset:4px}",
+      "css": ".ds-nav{display:flex;gap:25px;border-bottom:1px solid var(--border,#d6dde1)}.ds-nav button{font-family:\"Source Sans 3\",sans-serif;font-size:16px;font-weight:600;border:0;border-bottom:3px solid transparent;border-radius:0;background:transparent;padding:12px 3px 15px;color:var(--muted,#56665f);cursor:pointer}.ds-nav .ds-current{color:var(--cranberry,#b32339);border-bottom-color:var(--gold,#8a6419)}.ds-nav button:hover{background:transparent}.ds-nav button:focus-visible{outline:3px solid var(--gold,#8a6419);outline-offset:4px}",
       "refersTo": "view-navigation"
+    },
+    {
+      "name": "Christmas identity",
+      "kind": "custom",
+      "description": "Shared tree-and-star artwork for masthead, footer and browser favicon.",
+      "html": "<svg class=\"ds-mark\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\">\n  <rect width=\"64\" height=\"64\" rx=\"14\" fill=\"#0f5138\"/>\n  <path d=\"m32 5 2.2 5 5.4.5-4.1 3.6 1.2 5.3L32 16.6l-4.7 2.8 1.2-5.3-4.1-3.6 5.4-.5Z\" fill=\"#edc96c\"/>\n  <path d=\"M32 18 19 33h7L14 47h36L38 33h7Z\" fill=\"#f8fbf8\"/>\n  <path d=\"M29 47h6v9h-6z\" fill=\"#edc96c\"/>\n  <circle cx=\"29\" cy=\"31\" r=\"3\" fill=\"#bd263d\"/>\n  <circle cx=\"38\" cy=\"41\" r=\"3\" fill=\"#bd263d\"/>\n  <circle cx=\"25\" cy=\"42\" r=\"2.5\" fill=\"#b1becb\"/>\n</svg>",
+      "css": ".ds-mark{display:block;width:46px;height:46px;border:1px solid var(--gold-bright,#edc96c);border-radius:11px}"
     }
   ],
   "narrative": {
     "northStar": "The Local Holiday Field Guide",
-    "overview": "A warm, understated guide whose holiday character comes from cream, evergreen, cranberry, locally bundled type, and small outline icons. It is a working calendar with readable records. Quiet paper surfaces support comparison and clearly labeled certainty.",
+    "overview": "A colorful Christmas field guide with a red masthead, green seasonal intro and map heading, silver quiet surfaces and gold highlights. White records preserve comparison, local typography and explicit certainty. The tree-and-star icon is shared across the header, footer and browser favicon.",
     "keyCharacteristics": [
-      "Warm paper and evergreen structure",
+      "Christmas red, green, silver and gold",
       "Literary headings with practical controls",
-      "Visible verification and keyboard focus",
-      "Quiet interaction feedback"
+      "Colored date and category chips on flat white records",
+      "Shared tree-and-star identity",
+      "Visible verification and keyboard focus"
     ],
     "rules": [
       {
@@ -162,7 +198,7 @@
       }
     ],
     "dos": [
-      "Do preserve cream, evergreen, and cranberry across views.",
+      "Do preserve Christmas red, green, silver and gold across views.",
       "Do retain local Lora and Source Sans 3 typography.",
       "Do preserve visible keyboard focus and reduced-motion support."
     ],
