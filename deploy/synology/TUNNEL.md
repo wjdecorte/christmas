@@ -25,12 +25,12 @@ Back up before changing the deployment:
 cd /volume1/docker/christmas-events
 sudo /usr/local/bin/docker compose exec -T app python -m app.manage backup /data/backups/before-tunnel-UNIQUE-TIMESTAMP.sqlite3
 sudo /usr/local/bin/docker compose -f compose.yaml -f compose.tunnel.yaml config --quiet
-sudo /usr/local/bin/docker compose -f compose.yaml -f compose.tunnel.yaml pull cloudflared
+sudo /usr/local/bin/docker compose -f compose.yaml -f compose.tunnel.yaml pull app cloudflared
 sudo /usr/local/bin/docker compose -f compose.yaml -f compose.tunnel.yaml up -d --wait
 sudo /usr/local/bin/docker compose -f compose.yaml -f compose.tunnel.yaml ps
 ```
 
-Replace the backup placeholder with a unique timestamp. Use both Compose files for subsequent updates, or select both in Container Manager. `CLOUDFLARED_IMAGE` can pin a tested official connector version/digest; updates require pulling and recreating the container. No image build is needed on the NAS.
+Replace the backup placeholder with a unique timestamp. Use both Compose files for subsequent updates, or select both in Container Manager. `CLOUDFLARED_IMAGE` can pin a tested official connector version/digest; updates require pulling and recreating the container. No image build is needed on the NAS. This override defaults to the tested app commit; set `CHRISTMAS_IMAGE` to a newer tested commit tag when upgrading. Always pull both services before recreating them to avoid reusing an old cached `latest` image.
 
 Public mode accepts only the configured hostname. The direct LAN-IP site will return an unrecognized-host error; use the HTTPS public URL for browsing and admin sign-in. Internal loopback health checks remain available. Secure admin cookies require HTTPS. A server restart signs the administrator out. Visitors do not need accounts.
 

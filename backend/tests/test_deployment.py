@@ -46,3 +46,15 @@ def test_ci_checks_gate_both_architectures_and_publishing():
     assert 'contains(["amd64", "arm64"])' in publish
     assert "packages" not in workflow["permissions"]
     assert jobs["publish"]["permissions"]["packages"] == "write"
+
+
+def test_tunnel_uses_tested_app_and_private_token_without_extra_ports():
+    override = yaml.safe_load((ROOT / "deploy/synology/compose.tunnel.yaml").read_text())
+    app = override["services"]["app"]
+    assert ":sha-" in app["image"]  # A cached LAN 'latest' must not undo public hardening.
+    assert app["environment"]["PUBLIC_MODE"] == "true"
+    assert app["environment"]["PUBLIC_ORIGIN"] == "https://christmas.decorteindustries.com"
+    connector = override["services"]["cloudflared"]
+    assert "ports" not in connector and "network_mode" not in connector
+    assert "--token-file" in connector["command"] and "--token" not in connector["command"]
+    assert connector["depends_on"]["app"]["condition"] == "service_healthy"

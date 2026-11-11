@@ -1,6 +1,7 @@
 # Use together with compose.yaml after creating a remotely managed Cloudflare Tunnel.
 services:
   app:
+    image: ${CHRISTMAS_IMAGE:-ghcr.io/wjdecorte/christmas:sha-71de8ca8984ddc794e16cc7e5df8c24c85ed5fa3}
     environment:
       PUBLIC_MODE: "true"
       PUBLIC_ORIGIN: https://christmas.decorteindustries.com
