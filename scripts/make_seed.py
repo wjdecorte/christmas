@@ -404,5 +404,14 @@ for e in data["events"]:
         e["verification_notes"] = (
             "Official annual calendar mentions the 2026 attraction. Detailed schedule not fully verified."
         )
+# Preserve original research-chat URLs when rebuilding the initial dataset.
+original_sources = {
+    row["event_id"]: row["source_url"]
+    for row in json.loads(Path("data/original-chat-sources.json").read_text())["records"]
+}
+for event in data["events"]:
+    if not event["source_url"] and event["id"] in original_sources:
+        event["source_url"] = original_sources[event["id"]]
+
 Path("data/seed.json").write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
 print(f"Seed: {len(data['events'])} events, {len(data['venues'])} venues")

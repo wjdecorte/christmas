@@ -1,0 +1,180 @@
+{
+  "research_chat": "https://chatgpt.com/s/t_6af4b8fc695481919903b6caee263967",
+  "purpose": "Recover missing original source links, not verify event claims. Preserve existing URLs and all other event fields.",
+  "records": [
+    {
+      "event_id": "hamilton-tree-lighting",
+      "event_name": "Hamilton Hotel Christmas Tree Lighting",
+      "chat_link_label": "Hamilton Hotel Christmas Tree Lighting",
+      "source_url": "https://www.awesomealpharetta.com/calendar/category/downtown-alpharetta/"
+    },
+    {
+      "event_id": "roswell-christkindlmarket",
+      "event_name": "Roswell Christkindlmarket",
+      "chat_link_label": "Roswell Christkindlmarket",
+      "source_url": "https://roswelljournal.com/holiday-lights-and-christmas-events/"
+    },
+    {
+      "event_id": "cumming-tree-lighting",
+      "event_name": "Cumming Christmas Tree Lighting",
+      "chat_link_label": "Cumming Christmas Tree Lighting",
+      "source_url": "https://discoverfoco.com/events/category/halloween-christmas-easter-4th-of-july-independence-day-veteransday/"
+    },
+    {
+      "event_id": "ball-ground-light-up",
+      "event_name": "Ball Ground Light Up the Night",
+      "chat_link_label": "Light Up the Night",
+      "source_url": "https://cityofballground.com/community-events/"
+    },
+    {
+      "event_id": "ball-ground-tree-lighting",
+      "event_name": "Ball Ground Hometown Tree Lighting",
+      "chat_link_label": "Hometown Tree Lighting at the Garden",
+      "source_url": "https://cityofballground.com/community-events/"
+    },
+    {
+      "event_id": "alpharetta-holiday-symphony",
+      "event_name": "An Alpharetta Holiday \u2014 Alpharetta Symphony",
+      "chat_link_label": "An Alpharetta Holiday",
+      "source_url": "https://www.alpharettasymphony.org/an-alpharetta-holiday"
+    },
+    {
+      "event_id": "hickory-flat-market",
+      "event_name": "Hickory Flat Christmas Market",
+      "chat_link_label": "Hickory Flat Christmas Market",
+      "source_url": "https://playcherokee.org/upcoming-events/"
+    },
+    {
+      "event_id": "marietta-tree-lighting",
+      "event_name": "Marietta Square Tree Lighting",
+      "chat_link_label": "Marietta Square Tree Lighting",
+      "source_url": "https://www.mariettaga.gov/208/Christmas-Tree-Lighting-Santa-on-the-Squ"
+    },
+    {
+      "event_id": "mistletoe-on-main",
+      "event_name": "Mistletoe on Main",
+      "chat_link_label": "Mistletoe on Main",
+      "source_url": "https://explorecantonga.com/events/"
+    },
+    {
+      "event_id": "christmas-at-reinhardt",
+      "event_name": "Christmas at Reinhardt",
+      "chat_link_label": "Christmas at Reinhardt",
+      "source_url": "https://cherokeehappenings.com/events/christmas-at-reinhardt/"
+    },
+    {
+      "event_id": "march-of-toys",
+      "event_name": "March of the Toys Christmas Parade",
+      "chat_link_label": "March of the Toys Christmas Parade",
+      "source_url": "https://cityofballground.com/community-events/"
+    },
+    {
+      "event_id": "roswell-tree-lighting",
+      "event_name": "Roswell Christmas Tree Lighting",
+      "chat_link_label": "Roswell Christmas Tree Lighting",
+      "source_url": "https://roswelljournal.com/holiday-lights-and-christmas-events/"
+    },
+    {
+      "event_id": "dickens-christmas-carol",
+      "event_name": "A Dickens\u2019 Christmas Carol",
+      "chat_link_label": "A Dickens' Christmas Carol",
+      "source_url": "https://exploregeorgia.org/canton/events/entertainment/a-dickens-christmas-carol-presented-by-cherokee-theatre-company"
+    },
+    {
+      "event_id": "ball-ground-market",
+      "event_name": "Ball Ground Christmas Market",
+      "chat_link_label": "Christmas in Ball Ground Holiday Market",
+      "source_url": "https://cityofballground.com/community-events/"
+    },
+    {
+      "event_id": "snow-day",
+      "event_name": "Snow Day at Cumming City Center",
+      "chat_link_label": "Snow Day at Cumming City Center",
+      "source_url": "https://cummingcitycenter.com/events/"
+    },
+    {
+      "event_id": "christmas-with-elvis",
+      "event_name": "Christmas with Elvis",
+      "chat_link_label": "Christmas with Elvis",
+      "source_url": "https://www.madlifestageandstudios.com/shows/1991599517770"
+    },
+    {
+      "event_id": "nutcracker",
+      "event_name": "The Nutcracker",
+      "chat_link_label": "The Nutcracker Ballet",
+      "source_url": "https://roswellcac.showare.com/eventperformances.asp?evt=283"
+    },
+    {
+      "event_id": "canton-merry-market",
+      "event_name": "Canton Merry Market and Christmas Parade",
+      "chat_link_label": "39th Annual Canton Merry Market & Christmas Parade",
+      "source_url": "https://explorecantonga.com/events/"
+    },
+    {
+      "event_id": "holly-springs-parade",
+      "event_name": "Holly Springs Holly Jolly Christmas Parade",
+      "chat_link_label": "Holly Jolly Christmas Parade",
+      "source_url": "https://www.hollyspringsga.us/259/Events"
+    },
+    {
+      "event_id": "cumming-parade",
+      "event_name": "Cumming Christmas Parade",
+      "chat_link_label": "Cumming Christmas Parade",
+      "source_url": "https://www.cityofcumming.net/event/2026-city-of-cumming-christmas-parade"
+    },
+    {
+      "event_id": "alpharetta-winter-parade",
+      "event_name": "Alpharetta Winter Parade",
+      "chat_link_label": "Alpharetta Winter Parade",
+      "source_url": "https://www.awesomealpharetta.com/calendar/category/downtown-alpharetta/"
+    },
+    {
+      "event_id": "sounds-of-season",
+      "event_name": "Sounds of the Season \u2014 First Baptist Woodstock",
+      "chat_link_label": "Sounds of the Season",
+      "source_url": "https://fbcwoodstock.churchcenter.com/registrations/events/3957418"
+    },
+    {
+      "event_id": "celtic-angels",
+      "event_name": "Celtic Angels Christmas",
+      "chat_link_label": "Celtic Angels Christmas",
+      "source_url": "https://thefalany.showare.com/eventperformances.asp?evt=10"
+    },
+    {
+      "event_id": "grinchmas",
+      "event_name": "Grinchmas at The Mill",
+      "chat_link_label": "Grinchmas at The Mill",
+      "source_url": "https://explorecantonga.com/events/annual-events/christmas-in-canton/"
+    },
+    {
+      "event_id": "polar-express",
+      "event_name": "Polar Express Winter Wonderland Festival",
+      "chat_link_label": "Polar Express Winter Wonderland Festival",
+      "source_url": "https://explorecantonga.com/events/"
+    },
+    {
+      "event_id": "big-band-jazz",
+      "event_name": "Big Band Holiday Jazz",
+      "chat_link_label": "Big Band Holiday Jazz",
+      "source_url": "https://www.madlifestageandstudios.com/shows/1979937595647"
+    },
+    {
+      "event_id": "woodstock-lights",
+      "event_name": "Holiday Lights of Woodstock",
+      "chat_link_label": "Holiday Lights of Woodstock",
+      "source_url": "https://www.woodstockpost.com/holiday-lights-and-christmas-events/"
+    },
+    {
+      "event_id": "canton-lights",
+      "event_name": "Holiday Lights of Canton",
+      "chat_link_label": "Holiday Lights of Canton",
+      "source_url": "https://exploregeorgia.org/canton/events/entertainment/holiday-lights-of-canton-presented-by-northside-hospital"
+    },
+    {
+      "event_id": "rink-on-river",
+      "event_name": "Rink on the River",
+      "chat_link_label": "Rink on the River",
+      "source_url": "https://explorecantonga.com/events/annual-events/"
+    }
+  ]
+}

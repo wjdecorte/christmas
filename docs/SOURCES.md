@@ -32,3 +32,10 @@ Partial checks retained as unverified:
 Coordinates are actual OpenStreetMap Nominatim address-search results, cached in seed venues with returned display-name provenance. Address matches can represent a building, street or entrance rather than an event footprint. They should be checked and manually corrected where necessary. No missing event location is replaced with a town-center guess. The regional map center is not an event location.
 
 `make_seed.py` transcribes the supplied list and `enrich_seed.py` records the findings above. These are research provenance tools, not an application startup path: regenerating the seed removes one-time geocoding enrichment unless it is preserved separately. Use the checked-in seed directly for installation. Do not regenerate it to update existing administrator-managed data.
+
+
+## Original research chat — recovered November 11, 2026
+
+The original [shared research chat](https://chatgpt.com/s/t_6af4b8fc695481919903b6caee263967) includes clickable citations that were omitted from the pasted starting list. Recovered all 29 previously missing source URLs, using event-name matches and explicit aliases where the app shortened a name. `data/original-chat-sources.json` records each event ID, original link label and URL. Removed only `utm_*` tracking parameters; retained functional parameters such as ticketing event IDs. Existing nonempty source URLs were preserved. All 43 events now have a source URL.
+
+These links establish provenance, not fresh confirmation of dates, prices or cancellation status. Several are general city calendars or third-party event guides rather than individual organizer pages. Event verification flags, schedules and prices were left unchanged. Seed regeneration applies the same missing-only mapping. The live NAS was backed up before source-only updates through the authenticated administration API.
