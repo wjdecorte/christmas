@@ -266,3 +266,85 @@ def audit():
             dict(r)
             for r in db.execute("SELECT * FROM review_audit ORDER BY id DESC LIMIT 100")
         ]
+
+
+class EventSourceInput(BaseModel):
+    url: str = Field(max_length=2000)
+    name: str = Field(default="", max_length=200)
+
+
+@router.get("/events/{event_id}/sources")
+def event_sources(event_id: str):
+    with connect() as db:
+        if not db.execute("SELECT 1 FROM events WHERE id=?", (event_id,)).fetchone():
+            raise HTTPException(404, "Event not found")
+        return [
+            dict(r)
+            for r in db.execute(
+                "SELECT * FROM discovery_sources WHERE target_event_id=? ORDER BY name",
+                (event_id,),
+            )
+        ]
+
+
+@router.post("/events/{event_id}/sources", status_code=201)
+def add_event_source(event_id: str, value: EventSourceInput):
+    from .source_parse import canonical
+
+    with connect() as db:
+        db.execute("BEGIN IMMEDIATE")
+        event = db.execute("SELECT * FROM events WHERE id=?", (event_id,)).fetchone()
+        if not event:
+            raise HTTPException(404, "Save the event before adding sources")
+        try:
+            source = Source(
+                id="event-" + uuid.uuid4().hex,
+                name=value.name.strip() or event["name"],
+                url=value.url.strip(),
+                kind="page",
+                city=event["city"],
+                keywords="",
+            )
+        except ValueError as exc:
+            raise HTTPException(
+                422, "Enter a public HTTPS URL on port 443 without credentials"
+            ) from exc
+        existing = db.execute(
+            "SELECT url FROM discovery_sources WHERE target_event_id=?", (event_id,)
+        ).fetchall()
+        if len(existing) >= 20:
+            raise HTTPException(422, "An event can have up to 20 additional sources")
+        if any(canonical(r["url"]) == canonical(source.url) for r in existing):
+            raise HTTPException(409, "This URL is already attached to the event")
+        values = {**source.model_dump(), "target_event_id": event_id}
+        db.execute(
+            f"INSERT INTO discovery_sources({','.join(values)}) VALUES ({','.join('?' for _ in values)})",
+            list(values.values()),
+        )
+    return {
+        "id": source.id,
+        "message": "Source saved and queued; extracted changes require review",
+    }
+
+
+class EventSourceEnabled(BaseModel):
+    enabled: bool
+
+
+@router.patch("/events/{event_id}/sources/{source_id}")
+def toggle_event_source(event_id: str, source_id: str, value: EventSourceEnabled):
+    with connect() as db:
+        db.execute("BEGIN IMMEDIATE")
+        row = db.execute(
+            "SELECT * FROM discovery_sources WHERE id=? AND target_event_id=?",
+            (source_id, event_id),
+        ).fetchone()
+        if not row:
+            raise HTTPException(404, "Event source not found")
+        if row["lease_until"] > int(time.time()):
+            raise HTTPException(409, "Source check is running; wait until it finishes")
+        db.execute(
+            "UPDATE discovery_sources SET enabled=?,next_check=0 WHERE id=?",
+            (value.enabled, source_id),
+        )
+    return {"id": source_id, "enabled": value.enabled}

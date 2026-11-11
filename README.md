@@ -4,7 +4,7 @@ A self-hosted Christmas outings guide for North Georgia. React/TypeScript/Vite/T
 
 ## Automatic updates and public-read preparation
 
-**Admin → Review** now receives discoveries and changes from approved official sources on a schedule. An administrator reviews source evidence and edits/approves or dismisses each proposal; nothing publishes automatically. See [Discovery and review](docs/DISCOVERY.md).
+**Admin → Review** now receives discoveries and changes from approved official sources on a schedule. An administrator reviews source evidence and edits/approves or dismisses each proposal; nothing publishes automatically. Saved events also accept additional source URLs in **Admin → Events → Edit**, with manual checks and the same approval workflow. See [Discovery and review](docs/DISCOVERY.md).
 
 Visitors can read event pages without an account. Public HTTPS access is prepared through an opt-in strict origin/host and secure-cookie configuration; the NAS remains LAN-only until a gateway is chosen and configured. See [Public readiness and deployment options](docs/PUBLIC_READINESS.md).
 

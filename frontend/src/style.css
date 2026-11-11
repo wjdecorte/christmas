@@ -1821,3 +1821,11 @@ a.event-source {
 .source-pending {
   color: var(--muted);
 }
+
+.event-sources { margin: 20px 0; min-width: 0; }
+.event-sources > p { margin-bottom: 12px; }
+.event-source-list { list-style: none; padding: 0; margin: 16px 0 0; }
+.event-source-list > li { padding: 16px 0; border-top: 1px solid var(--border); }
+.event-source-list a { display: inline-flex; gap: 6px; align-items: center; font-weight: 600; }
+.event-source-list p { margin: 6px 0; }
+.event-source-list .source-url { overflow-wrap: anywhere; color: var(--muted); font-size: 14px; }

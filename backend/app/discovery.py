@@ -87,8 +87,15 @@ def address_key(value):
     value = re.sub(r"\b\d{5}(?:-\d{4})?\s*$", "", value.casefold())
     words = re.sub(r"[^\w]+", " ", value).split()
     abbreviations = {
-        "street": "st", "road": "rd", "avenue": "ave", "parkway": "pkwy",
-        "drive": "dr", "east": "e", "west": "w", "north": "n", "south": "s",
+        "street": "st",
+        "road": "rd",
+        "avenue": "ave",
+        "parkway": "pkwy",
+        "drive": "dr",
+        "east": "e",
+        "west": "w",
+        "north": "n",
+        "south": "s",
     }
     return " ".join(abbreviations.get(word, word) for word in words)
 
@@ -203,31 +210,37 @@ def enqueue(
     return 1
 
 
-def observe_records(source, records):
+def observe_records(source, records, target=None):
     added = 0
     with connect() as db:
         events = event_rows(db)
         for record in records:
             fields = record["fields"]
             start = fields["occurrences"][0]["start_date"]
-            if re.search(r"\bclosed\b", fields["name"], re.IGNORECASE):
-                continue
-            today = datetime.now(ZoneInfo("America/New_York")).date()
-            # Limit discovery to this and next holiday season, not historical archives.
-            if int(start[:4]) not in (today.year, today.year + 1) or start[5:7] not in (
-                "11",
-                "12",
-                "01",
-            ):
-                continue
-            terms = [
-                t.strip().casefold() for t in source["keywords"].split(",") if t.strip()
-            ]
-            if terms and not any(
-                t in (fields["name"] + " " + fields.get("description", "")).casefold()
-                for t in terms
-            ):
-                continue
+            if target is None:
+                if re.search(r"\bclosed\b", fields["name"], re.IGNORECASE):
+                    continue
+                today = datetime.now(ZoneInfo("America/New_York")).date()
+                # Limit discovery to this and next holiday season, not historical archives.
+                if int(start[:4]) not in (today.year, today.year + 1) or start[
+                    5:7
+                ] not in (
+                    "11",
+                    "12",
+                    "01",
+                ):
+                    continue
+                terms = [
+                    t.strip().casefold()
+                    for t in source["keywords"].split(",")
+                    if t.strip()
+                ]
+                if terms and not any(
+                    t
+                    in (fields["name"] + " " + fields.get("description", "")).casefold()
+                    for t in terms
+                ):
+                    continue
             external = record["external_id"]
             stamp = fingerprint({"fields": fields, "venue": record.get("venue")})
             previous = db.execute(
@@ -238,7 +251,7 @@ def observe_records(source, records):
                 continue
             city = fields.get("city") or source["city"]
             season = int(start[:4]) - (start[5:7] == "01")
-            current = match_event(
+            current = target or match_event(
                 db, source["id"], external, fields, city, season, events
             )
             proposed, venue = draft_for(
@@ -247,9 +260,15 @@ def observe_records(source, records):
                 current,
                 json.loads(previous["payload"]) if previous else None,
             )
+            if target is not None:
+                proposed["source_url"] = current["source_url"]
             changes = (
                 not current
-                or any(proposed[k] != current.get(k) for k in fields)
+                or any(
+                    proposed[k] != current.get(k)
+                    for k in fields
+                    if target is None or k != "source_url"
+                )
                 or bool(venue)
             )
             if changes:
@@ -273,7 +292,7 @@ def observe_records(source, records):
     return added
 
 
-def observe_page(source, event, status, text, url):
+def observe_page(source, event, status, text, url, initial_review=False):
     external = "page:" + event["id"]
     stamp = fingerprint([status, text])
     with connect() as db:
@@ -283,7 +302,7 @@ def observe_page(source, event, status, text, url):
         ).fetchone()
         added = 0
         if (previous and previous["fingerprint"] != stamp) or (
-            not previous and status in (404, 410)
+            not previous and (status in (404, 410) or initial_review)
         ):
             proposed = comparable(event)
             proposed.update(
@@ -296,7 +315,7 @@ def observe_page(source, event, status, text, url):
             note = (
                 "A missing source page is not proof of cancellation."
                 if status in (404, 410)
-                else "Page text changed. Check dates, prices and venue manually; no structured event facts were extracted."
+                else "Page excerpt requires review. Check dates, prices and venue manually; no unambiguous structured event facts were extracted."
             )
             before_text = (
                 json.loads(previous["payload"]).get("text", "") if previous else ""
@@ -324,6 +343,31 @@ def observe_page(source, event, status, text, url):
 def check_source(source, stop=None, reader=None):
     reader = reader or PoliteReader(source["url"], stop)
     status, body, url = reader.get(source["url"])
+    if source.get("target_event_id"):
+        with connect() as db:
+            target = next(
+                (e for e in event_rows(db) if e["id"] == source["target_event_id"]),
+                None,
+            )
+        if target is None:
+            raise ValueError("Linked event no longer exists; pause this source")
+        records, page = jsonld_records(body, url)
+        # A listing with several unrelated events must not all overwrite the linked event.
+        if len(records) > 1:
+            records = [
+                r
+                for r in records
+                if comparable_name(r["fields"]["name"])
+                == comparable_name(target["name"])
+            ]
+        if len(records) == 1 and status == 200:
+            records[0]["external_id"] = "linked:" + target["id"]
+            added = observe_records(source, records, target=target)
+            return f"Linked event inspected; {added} review items created. Original source retained."
+        added = observe_page(
+            source, target, status, page.text, url, initial_review=True
+        )
+        return f"Page excerpt captured; {added} review items created. Check details manually; no unambiguous structured event found."
     if status != 200:
         raise ValueError(f"Calendar source returned HTTP {status}; no events removed")
     if source["kind"] == "ical":

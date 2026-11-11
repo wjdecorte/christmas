@@ -36,3 +36,14 @@ Public browser tabs refresh data on focus and every five minutes while visible. 
 Migration `002_discovery.sql` adds event status, source settings, observations, review proposals and audit history. It is additive; existing events, venues and coordinates are retained. The worker never edits published events directly. Back up the running NAS database before installing this version. SQLite backups preserve the queue and source settings; JSON/CSV exports preserve events/venues, not discovery/audit history. Restoring a backup revokes administrator sessions. Successful application startup also revokes old sessions.
 
 References: [Schema.org Event](https://schema.org/Event), [iCalendar RFC 5545](https://www.rfc-editor.org/rfc/rfc5545).
+
+
+## Additional URLs for a saved event
+
+Open **Admin → Events → Edit → Additional sources**. Add a label and public HTTPS URL, then choose **Add URL & queue check**. Up to 20 additional sources can be attached per event. Save ordinary event edits first: checking uses the published/saved record. Sources persist independently of the editor's Save/Cancel buttons. Duplicate canonical URLs are rejected.
+
+The checker visits only the exact approved URL and binds its suggestions to that saved event. A single structured JSON-LD Event, or a unique exact-name match on a multi-event page, can suggest changes. Ambiguous listings and pages without structured event data provide excerpts for manual review, including on their first check. Missing pages remain review signals, not automatic cancellations. Login-only/blocked pages cannot be fetched. Existing robots/TLS/public-IP/body/timeout protections apply. No Facebook login, CAPTCHA bypass, or generic AI interpretation is introduced.
+
+Additional sources never replace the event's original public source URL automatically or on approval. All proposed edits stay in **Admin → Review** until approved. Identical observations do not repeatedly queue. Sources run every 12 hours by default; use Check now, Pause checks, or Enable checks in the event editor. Status, errors and results refresh while the editor is open. Global `DISCOVERY_ENABLED=false` pauses fetching; queueing a Check now then reports that setting must be enabled. General source settings remain available in Admin → Review.
+
+Migration `003_event_sources.sql` adds an optional event binding to discovery sources. It does not change existing event fields or sources. Deleted events leave their source bindings intact; subsequent checks report that the linked event no longer exists, rather than discovering into unrelated events. Pause those sources. Back up SQLite before upgrading. The database backup preserves additional source associations; event JSON/CSV exports do not include private discovery-source settings.

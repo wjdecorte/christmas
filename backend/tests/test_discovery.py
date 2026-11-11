@@ -588,4 +588,150 @@ def test_new_migration_preserves_existing_records_and_manual_changes(client, aut
             ).fetchone()[0]
             == "keep"
         )
-        assert db.execute("SELECT count(*) FROM schema_migrations").fetchone()[0] == 2
+        assert db.execute("SELECT count(*) FROM schema_migrations").fetchone()[0] == 3
+
+
+def test_additional_sources_auth_validation_and_duplicate_identity(client, auth):
+    path = "/api/admin/events/hamilton-tree-lighting/sources"
+    cookies = dict(client.cookies)
+    client.cookies.clear()
+    assert client.get(path).status_code == 401
+    assert (
+        client.post(path, json={"url": "https://example.org/event"}).status_code == 401
+    )
+    client.cookies.update(cookies)
+    for url in [
+        "http://example.org/event",
+        "https://127.0.0.1/event",
+        "https://user:pass@example.org/event",
+    ]:
+        assert client.post(path, headers=auth, json={"url": url}).status_code == 422
+    r = client.post(
+        path,
+        headers=auth,
+        json={"url": "https://example.org/event", "name": "Additional organizer"},
+    )
+    assert r.status_code == 201
+    assert (
+        client.post(
+            path,
+            headers=auth,
+            json={"url": "https://example.org/event/?utm_source=test"},
+        ).status_code
+        == 409
+    )
+    row = client.get(path, headers=auth).json()[0]
+    assert row["target_event_id"] == "hamilton-tree-lighting"
+    assert row["next_check"] == 0
+    assert (
+        client.patch(
+            path + "/" + row["id"], headers=auth, json={"enabled": False}
+        ).status_code
+        == 200
+    )
+    assert client.get(path, headers=auth).json()[0]["enabled"] == 0
+    assert (
+        client.patch(
+            "/api/admin/events/canton-tree-lighting/sources/" + row["id"],
+            headers=auth,
+            json={"enabled": False},
+        ).status_code
+        == 404
+    )
+
+
+def test_bound_page_extracts_into_correct_event_without_changing_original_source(
+    client, auth
+):
+    path = "/api/admin/events/canton-tree-lighting/sources"
+    client.post(path, headers=auth, json={"url": "https://example.org/event"})
+    source = client.get(path, headers=auth).json()[0]
+    before = client.get("/api/events/canton-tree-lighting").json()
+
+    class Reader:
+        def get(self, url):
+            assert url == source["url"]
+            return (
+                200,
+                '<script type="application/ld+json">'
+                + json.dumps(
+                    {
+                        "@type": "Event",
+                        "name": "A renamed holiday evening",
+                        "startDate": f"{YEAR}-12-20T18:00:00-05:00",
+                        "description": "New source details",
+                        "url": url,
+                    }
+                )
+                + "</script>",
+                url,
+            )
+
+    assert "1 review items" in check_source(source, reader=Reader())
+    assert client.get("/api/events/canton-tree-lighting").json() == before
+    proposal = client.get("/api/admin/review", headers=auth).json()[0]
+    assert proposal["event_id"] == before["id"]
+    assert proposal["proposed"]["source_url"] == before["source_url"]
+    assert proposal["evidence_url"] == source["url"]
+    assert proposal["proposed"]["name"] == "A renamed holiday evening"
+    assert "0 review items" in check_source(source, reader=Reader())
+    assert (
+        client.post(
+            "/api/admin/review/" + proposal["id"] + "/approve",
+            headers=auth,
+            json={"event": proposal["proposed"]},
+        ).status_code
+        == 200
+    )
+    after = client.get("/api/events/canton-tree-lighting").json()
+    assert (
+        after["name"] == "A renamed holiday evening"
+        and after["source_url"] == before["source_url"]
+    )
+
+
+def test_bound_plain_page_first_capture_and_ambiguous_listing_require_manual_review(
+    client, auth
+):
+    path = "/api/admin/events/hamilton-tree-lighting/sources"
+    client.post(path, headers=auth, json={"url": "https://example.org/details"})
+    source = client.get(path, headers=auth).json()[0]
+    before = client.get("/api/events/hamilton-tree-lighting").json()
+
+    class Reader:
+        def get(self, url):
+            return (
+                200,
+                "<main>Holiday schedule: tickets cost $20. Check the organizer.</main>",
+                url,
+            )
+
+    assert "1 review items" in check_source(source, reader=Reader())
+    proposal = client.get("/api/admin/review", headers=auth).json()[0]
+    assert "$20" in proposal["evidence_text"]
+    assert proposal["proposed"]["price_type"] == before["price_type"]
+    assert client.get("/api/events/hamilton-tree-lighting").json() == before
+    assert "0 review items" in check_source(source, reader=Reader())
+
+    class Listing:
+        def get(self, url):
+            return (
+                200,
+                '<script type="application/ld+json">'
+                + json.dumps(
+                    [
+                        {"@type": "Event", "name": n, "startDate": f"{YEAR}-12-20"}
+                        for n in ["Other Christmas One", "Other Christmas Two"]
+                    ]
+                )
+                + "</script><main>Multiple unrelated events</main>",
+                url,
+            )
+
+    assert "1 review items" in check_source(source, reader=Listing())
+    proposal = client.get("/api/admin/review", headers=auth).json()[0]
+    assert proposal["proposed"]["name"] == before["name"]
+    with connect() as db:
+        db.execute("DELETE FROM events WHERE id=?", (before["id"],))
+    with pytest.raises(ValueError, match="no longer exists"):
+        check_source(source, reader=Reader())

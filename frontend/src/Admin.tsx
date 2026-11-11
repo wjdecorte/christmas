@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { Event, Venue, Occurrence } from "./types";
 import { api, categories, label } from "./types";
 import ReviewQueue from "./ReviewQueue";
+import EventSources from "./EventSources";
 import {
   Plus,
   Trash2,
@@ -387,6 +388,11 @@ export default function Admin({
             {field("last_checked", "Last source check", "date")}
             {field("last_verified", "Last verification date", "date")}
           </div>
+          {!isNew && csrf ? (
+            <EventSources key={editing.id} eventId={editing.id} csrf={csrf} />
+          ) : (
+            <p>Save this event first to attach additional sources.</p>
+          )}
           <label>
             Description
             <textarea

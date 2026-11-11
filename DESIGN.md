@@ -250,3 +250,8 @@ Use the same tree-and-star SVG for the browser favicon and the masthead/footer m
 ### Discovery review
 
 Admin → Review uses the existing evergreen, cream and gold tokens. Published/source comparisons highlight proposed values in pale gold; source evidence remains a separate link and expandable excerpt. Review fields preserve manual edits while typing, expose conflict recovery, and keep verification opt-in. Narrow screens contain horizontal comparison scrolling within the table; editable controls use at least 16px text. Public cancellation/postponement labels accompany verification labels.
+
+
+### Event source controls
+
+The saved event editor groups additional source labels/URLs, scheduled-check status and pause/check actions in a fieldset. Add/check/pause buttons do not submit the surrounding event form. Source URLs wrap on narrow screens; errors preserve typed input, and queued changes explicitly require admin review. Original public source remains a separate field.
