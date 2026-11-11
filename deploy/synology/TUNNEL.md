@@ -34,6 +34,10 @@ Replace the backup placeholder with a unique timestamp. Use both Compose files f
 
 Public mode accepts only the configured hostname. The direct LAN-IP site will return an unrecognized-host error; use the HTTPS public URL for browsing and admin sign-in. Internal loopback health checks remain available. Secure admin cookies require HTTPS. A server restart signs the administrator out. Visitors do not need accounts.
 
+## Require HTTPS at the Cloudflare edge
+
+Create an enabled Single Redirect scoped only to `http://christmas.decorteindustries.com/*`, targeting `https://christmas.decorteindustries.com/${1}`, status **308**, with **Preserve query string** enabled. This prevents first-time HTTP visits from submitting an HTTP Origin that public-mode authentication correctly rejects. HSTS alone cannot upgrade the first HTTP visit. Keep the exact HTTPS origin check and Secure cookies enabled; do not loosen them to accept HTTP login. The deployed rule is named **Christmas app — require HTTPS**. It does not affect the company root domain or other subdomains.
+
 ## Verify and recover
 
 Verify public HTTPS, event count, CSS/icon/map, admin sign-in/sign-out, a 401 for anonymous `/api/admin/review`, rejection of an incorrect Host, and a healthy tunnel in Cloudflare. Review APIs must not be cached; preserve application Cache-Control headers and do not add a Cache Everything rule. Search indexing stays disabled by default. The app's existing admin authentication/CSRF remain active; a separate Cloudflare Access policy for admin APIs can be added later without gating public event reads.
