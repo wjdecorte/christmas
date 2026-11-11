@@ -35,3 +35,13 @@ Screenshots are local QA artifacts under `.impeccable/review/` (ignored by sourc
 ## Remaining operational work
 
 Set real administrator credentials, data-directory permissions and LAN binding on the NAS, then deploy using README instructions. Thirty-three supplied events remain unverified and 27 have no sourced coordinates; these remain visible with explicit labels/location-pending states. Some organizer prices and hours are unknown. Geocoding address results may require manual precision corrections. Event/source updates remain manual, as requested.
+
+
+## 2026-11-11 — Discovery and public preparation
+
+- 55 backend tests and 3 frontend tests pass; TypeScript/Vite production build passes.
+- Local Docker image builds and starts in public mode: loopback health 200, anonymous event read 200 (43 records), anonymous review API 401, noindex header present. No NAS ports or configuration changed.
+- Live Kennesaw source check in an isolated database created three pending proposals and left all 43 published records unchanged. Admin browser approval succeeded in that isolated database, retaining the saved venue. Desktop and 390px mobile review layouts inspected; mobile document width 389px at a 390px viewport. Sign-out returned to the password form.
+- Additive migration 002 introduces sources, observations, review/audit history and event status. Back up production SQLite before installing. CI and deployment remain separate: preparation is on a feature branch, not an upgrade of the NAS.
+- Coverage depends on approved sources, structured data, robots rules and request budgets. Unexpanded recurring calendar feeds are rejected explicitly. Plain-page changes require manual interpretation and do not prove cancellation.
+- One existing development-only Starlette TestClient deprecation warning remains. Screenshots are local ignored artifacts under `.impeccable/review/discovery/`.

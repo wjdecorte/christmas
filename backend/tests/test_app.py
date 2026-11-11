@@ -7,6 +7,8 @@ from app.db import connect, initialize
 
 @pytest.fixture
 def client(tmp_path, monkeypatch):
+    monkeypatch.setenv("DISCOVERY_ENABLED", "false")
+    monkeypatch.setenv("PUBLIC_MODE", "false")
     monkeypatch.setenv("DATABASE_PATH", str(tmp_path / "test.sqlite3"))
     monkeypatch.setenv("ADMIN_PASSWORD", "test-password-long-enough")
     with TestClient(app) as c:

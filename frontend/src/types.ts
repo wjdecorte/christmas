@@ -18,6 +18,7 @@ export type Event = {
   id: string;
   name: string;
   category: string;
+  status: "scheduled" | "cancelled" | "postponed";
   venue_id: string | null;
   venue: Venue | null;
   city: string;

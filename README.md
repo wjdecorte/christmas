@@ -2,6 +2,12 @@
 
 A self-hosted Christmas outings guide for North Georgia. React/TypeScript/Vite/Tailwind, FastAPI, SQLite, Leaflet with clustered OpenStreetMap markers. One container serves the built frontend and REST API; no account, paid API, or cloud database is required.
 
+## Automatic updates and public-read preparation
+
+**Admin → Review** now receives discoveries and changes from approved official sources on a schedule. An administrator reviews source evidence and edits/approves or dismisses each proposal; nothing publishes automatically. See [Discovery and review](docs/DISCOVERY.md).
+
+Visitors can read event pages without an account. Public HTTPS access is prepared through an opt-in strict origin/host and secure-cookie configuration; the NAS remains LAN-only until a gateway is chosen and configured. See [Public readiness and deployment options](docs/PUBLIC_READINESS.md).
+
 ## What is included
 
 - Discover events by town, category, date, admission, verification and search; sort by date, name or town.
@@ -83,7 +89,7 @@ Backend tests cover authorization/CSRF/origin checks, login limits, CRUD, future
 - Add each actual performance as a separate date/time row. For a multiweek attraction, a range is supported; describe closures and daily hours in schedule notes. Date ranges are clearly labeled in the calendar and do not prove daily operation. Unknown dates use no occurrence rows and remain in the list, outside date-filtered/calendar results.
 - Dates and times are local `America/New_York` wall times. Start/end dates support overnight events and runs into the following year. Season year controls the season selector independently of occurrence year; January 2027 can belong to the 2026 season.
 - Pricing is `free`, `paid`, or `unknown`; unknown never means free.
-- Verify against the official organizer/city source; record URL, verification date and notes. Only mark the event verified when its dated schedule is supported. Missing facts remain explicit. Verification is manual, not automatic expiration or source monitoring.
+- Verify against the official organizer/city source; record URL, verification date and notes. Only mark the event verified when its dated schedule is supported. Missing facts remain explicit. Verification remains an administrator decision; source monitoring queues evidence without automatically verifying events.
 - Create/manage venues in **Venues**. Enter a verified street address, save, and request **Save & geocode**. Set `GEOCODER_USER_AGENT` to identify this app and include your contact first. Nominatim calls are serialized, rate-limited to at most one per 1.1 seconds, and permanently cached (including no-match results). No autocomplete, startup lookup loop, or scheduled bulk requests. Change the service URL through `GEOCODER_URL` if needed.
 - Inspect the geocoder's returned source; address interpolation or a street match can be approximate. Correct both coordinates manually and record the source. Changing the venue address/city in the editor clears old coordinates. Events without known locations stay visible and are counted as awaiting a location.
 - Existing coordinates are never silently refreshed. To request again after an address correction, save that correction first. Cached results for the exact same address remain permanent; a no-match can be resolved with a better address or manual sourced coordinates.
@@ -129,8 +135,10 @@ Seeding runs only once per new database. Restarting/rebuilding never re-adds del
 
 ### Credentials
 
-`ADMIN_PASSWORD` is hashed with Argon2 in memory at startup. Alternatively use `PYTHONPATH=backend uv run python -m app.manage hash-password` to generate a hash and set `ADMIN_PASSWORD_HASH` in `.env` (single-quoted; leave `ADMIN_PASSWORD` empty). Direct backend deployments also accept `ADMIN_PASSWORD_FILE` for a mounted secret; add that mount and environment key in a Compose override if desired. Never commit `.env` or secrets. Sign-in uses an HttpOnly SameSite=Strict session cookie, expiring after eight hours, hashed session tokens in SQLite, CSRF tokens for writes, same-origin checks and per-client login limits (five attempts per 15 minutes). One worker serializes this small LAN service and geocoding rate limiter.
+`ADMIN_PASSWORD` is hashed with Argon2 in memory at startup. Alternatively use `PYTHONPATH=backend uv run python -m app.manage hash-password` to generate a hash and set `ADMIN_PASSWORD_HASH` in `.env` (single-quoted; leave `ADMIN_PASSWORD` empty). Direct backend deployments also accept `ADMIN_PASSWORD_FILE` for a mounted secret; add that mount and environment key in a Compose override if desired. Never commit `.env` or secrets. Sign-in uses an HttpOnly SameSite=Strict session cookie, expiring after eight hours, hashed session tokens in SQLite, CSRF tokens for writes, same-origin checks and per-client login limits (five attempts per 15 minutes). One worker serializes this small service and geocoding rate limiter.
+
+See [Discovery](docs/DISCOVERY.md) for supported structured feeds, robots/request limits, error handling, and review history. Back up SQLite before applying the additive discovery migration.
 
 ## Data limitations
 
-The supplied list is a starting calendar, not proof of organizer schedules. The seed includes official-source checks dated November 10, 2026, and preserves unresolved records. Some venues, times, admission prices and run dates remain unknown. Check `docs/SOURCES.md` and each event's notes. Unknown locations are excluded from markers; unknown dates are excluded from the calendar. No source refresh runs automatically. NAS installation itself requires access to the NAS; local Docker verification does not establish deployment there.
+The supplied list is a starting calendar, not proof of organizer schedules. The seed includes official-source checks dated November 10, 2026, and preserves unresolved records. Some venues, times, admission prices and run dates remain unknown. Check `docs/SOURCES.md` and each event's notes. Unknown locations are excluded from markers; unknown dates are excluded from the calendar. Scheduled source checks create private review proposals; administrator approval is required to publish them. NAS installation itself requires access to the NAS; local Docker verification does not establish deployment there.

@@ -8,6 +8,10 @@ services:
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
       ADMIN_PASSWORD_HASH: ${ADMIN_PASSWORD_HASH:-}
       COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      DISCOVERY_ENABLED: ${DISCOVERY_ENABLED:-true}
+      PUBLIC_MODE: ${PUBLIC_MODE:-false}
+      PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:-}
+      PUBLIC_INDEXABLE: ${PUBLIC_INDEXABLE:-false}
       GEOCODER_USER_AGENT: ${GEOCODER_USER_AGENT:-}
       GEOCODER_URL: ${GEOCODER_URL:-https://nominatim.openstreetmap.org/search}
       TZ: America/New_York

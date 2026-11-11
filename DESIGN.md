@@ -245,3 +245,8 @@ Use the same tree-and-star SVG for the browser favicon and the masthead/footer m
 - **Don't** introduce synthetic photography as a substitute for the established typographic and icon identity.
 - **Don't** convey verification or selection solely through color.
 - **Don't** promote a discovery-specific list/map composition into a requirement for every screen.
+
+
+### Discovery review
+
+Admin → Review uses the existing evergreen, cream and gold tokens. Published/source comparisons highlight proposed values in pale gold; source evidence remains a separate link and expandable excerpt. Review fields preserve manual edits while typing, expose conflict recovery, and keep verification opt-in. Narrow screens contain horizontal comparison scrolling within the table; editable controls use at least 16px text. Public cancellation/postponement labels accompany verification labels.

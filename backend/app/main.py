@@ -25,13 +25,32 @@ from .security import (
     password_hasher,
 )
 from .geocoding import geocode
+from .public_config import validate_config, check_request, public_mode, secure_cookie
+from .review_api import router as review_router
+from .discovery import start_worker
 
 
 @asynccontextmanager
 async def lifespan(app):
+    validate_config()
     app.state.password_hash = configure_password()
     initialize()
-    yield
+    # A server restart or password rotation revokes old administrator sessions.
+    with connect() as db:
+        db.execute("DELETE FROM sessions")
+    worker = (
+        start_worker()
+        if os.environ.get("DISCOVERY_ENABLED", "true").lower() == "true"
+        else None
+    )
+    try:
+        yield
+    finally:
+        if worker:
+            worker[0].set()
+            import asyncio
+
+            await asyncio.to_thread(worker[1].join, 5)
 
 
 app = FastAPI(
@@ -45,8 +64,15 @@ app = FastAPI(
 )
 
 
+app.include_router(review_router)
+
+
 @app.middleware("http")
 async def headers(request, call_next):
+    try:
+        check_request(request)
+    except HTTPException as exc:
+        return JSONResponse({"detail": exc.detail}, status_code=exc.status_code)
     # Read bounded bodies before the JSON parser, including chunked requests.
     if request.method in ("POST", "PUT", "PATCH"):
         body = bytearray()
@@ -58,12 +84,19 @@ async def headers(request, call_next):
                 )
         request._body = bytes(body)
     response = await call_next(request)
+    response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+    if public_mode():
+        response.headers["Strict-Transport-Security"] = "max-age=15552000"
+        if os.environ.get("PUBLIC_INDEXABLE", "false").lower() != "true":
+            response.headers["X-Robots-Tag"] = "noindex, nofollow"
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
     response.headers["Content-Security-Policy"] = (
         "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://tile.openstreetmap.org; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
     )
+    if request.url.path.startswith("/api/"):
+        response.headers["Cache-Control"] = "no-cache"
     if request.url.path.startswith("/api/admin") or request.url.path.startswith(
         "/api/auth"
     ):
@@ -120,7 +153,7 @@ def login(payload: Login, request: Request, response: Response):
         token,
         max_age=8 * 3600,
         httponly=True,
-        secure=os.environ.get("COOKIE_SECURE", "false").lower() == "true",
+        secure=secure_cookie(),
         samesite="strict",
         path="/",
     )
@@ -284,28 +317,29 @@ def dashboard(events=Depends(filters)):
         else today - timedelta(days=1)
     )
     sunday = saturday + timedelta(days=1)
+    eligible = [e for e in events if e["status"] == "scheduled"]
     return {
         "total": len(events),
         "by_city": dict(Counter(e["city"] for e in events)),
         "by_category": dict(Counter(e["category"] for e in events)),
         "upcoming": [
             e["id"]
-            for e in events
+            for e in eligible
             if any(o["end_date"] >= today.isoformat() for o in e["occurrences"])
         ],
         "concerts": [
-            e["id"] for e in events if e["category"] == "concert" and e["featured"]
+            e["id"] for e in eligible if e["category"] == "concert" and e["featured"]
         ],
         "weekend": [
             e["id"]
-            for e in events
+            for e in eligible
             if any(
                 o["start_date"] <= sunday.isoformat()
                 and o["end_date"] >= saturday.isoformat()
                 for o in e["occurrences"]
             )
         ],
-        "free": [e["id"] for e in events if e["price_type"] == "free"],
+        "free": [e["id"] for e in eligible if e["price_type"] == "free"],
         "weekend_start": saturday.isoformat(),
         "weekend_end": sunday.isoformat(),
     }
@@ -516,7 +550,11 @@ def favicon():
     icon = DIST / "favicon.svg"
     if not icon.is_file():
         raise HTTPException(404, "Icon is available after the frontend build")
-    return FileResponse(icon, media_type="image/svg+xml", headers={"Cache-Control": "public, max-age=3600"})
+    return FileResponse(
+        icon,
+        media_type="image/svg+xml",
+        headers={"Cache-Control": "public, max-age=3600"},
+    )
 
 
 if DIST.exists():

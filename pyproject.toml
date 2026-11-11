@@ -2,7 +2,13 @@
 name = "north-georgia-holiday-events"
 version = "1.0.0"
 requires-python = ">=3.12"
-dependencies = ["fastapi>=0.115,<1", "uvicorn[standard]>=0.34,<1", "httpx>=0.28,<1", "pwdlib[argon2]>=0.2,<1"]
+dependencies = [
+    "fastapi>=0.115,<1",
+    "uvicorn[standard]>=0.34,<1",
+    "httpx>=0.28,<1",
+    "pwdlib[argon2]>=0.2,<1",
+    "icalendar>=6,<8",
+]
 [dependency-groups]
 dev = ["pytest>=8,<10"]
 [tool.pytest.ini_options]
