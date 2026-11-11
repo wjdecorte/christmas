@@ -1808,3 +1808,16 @@ textarea {
     flex-wrap: wrap;
   }
 }
+
+.event-source {
+  margin-top: 10px;
+  font-size: 14px;
+}
+a.event-source {
+  min-height: 24px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.source-pending {
+  color: var(--muted);
+}

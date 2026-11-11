@@ -146,6 +146,19 @@ function EventCard({
             <span className="location-tba">Location pending</span>
           )}
         </div>
+        {event.source_url ? (
+          <a
+            className="source-link event-source"
+            href={event.source_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Original source for ${event.name} (opens in a new tab)`}
+          >
+            Original source <ExternalLink size={14} aria-hidden="true" />
+          </a>
+        ) : (
+          <p className="event-source source-pending">Source not yet recorded</p>
+        )}
       </div>
     </article>
   );
@@ -238,12 +251,13 @@ function Detail({ event, onBack }: { event: Event; onBack: () => void }) {
               className="source-link"
               href={event.source_url}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
+              aria-label={`Original source for ${event.name} (opens in a new tab)`}
             >
-              Visit official source <ExternalLink size={16} />
+              Original source <ExternalLink size={16} aria-hidden="true" />
             </a>
           ) : (
-            <p>An official source has not yet been attached to this record.</p>
+            <p>Source not yet recorded for this event.</p>
           )}
         </div>
         <aside className="venue-panel">
