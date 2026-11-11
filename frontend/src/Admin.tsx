@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Event, Venue, Occurrence } from "./types";
 import { api, categories, label } from "./types";
+import ReviewQueue from "./ReviewQueue";
 import {
   Plus,
   Trash2,
@@ -14,6 +15,7 @@ const emptyEvent = (year: number): Event => ({
   id: "",
   name: "",
   category: "festival",
+  status: "scheduled",
   venue_id: null,
   venue: null,
   city: "",
@@ -233,7 +235,7 @@ export default function Admin({
       </div>
       {notices}
       <div className="button-row admin-tabs">
-        {["events", "venues", "import / export"].map((t) => (
+        {["events", "review", "venues", "import / export"].map((t) => (
           <button
             key={t}
             className={tab === t ? "active" : ""}
@@ -247,6 +249,14 @@ export default function Admin({
           </button>
         ))}
       </div>
+      {tab === "review" && (
+        <ReviewQueue
+          csrf={csrf}
+          venues={venues}
+          onChange={onChange}
+          onSessionExpired={() => setCsrf(null)}
+        />
+      )}
       {tab === "events" && !editing && (
         <>
           <div className="section-heading">
@@ -313,6 +323,22 @@ export default function Admin({
             {field("name", "Event name")}
             {field("id", "Unique ID (lowercase letters, numbers, hyphens)")}
             {field("city", "City")}
+            <label>
+              Event status
+              <select
+                value={editing.status}
+                onChange={(e) =>
+                  setEditing({
+                    ...editing,
+                    status: e.target.value as Event["status"],
+                  })
+                }
+              >
+                <option value="scheduled">Scheduled</option>
+                <option value="cancelled">Cancelled</option>
+                <option value="postponed">Postponed</option>
+              </select>
+            </label>
             {field("season", "Season year", "number")}
             <label>
               Category

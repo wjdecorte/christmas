@@ -69,6 +69,7 @@ class Event(BaseModel):
     id: str = Field(pattern=r"^[a-z0-9][a-z0-9-]{0,99}$")
     name: str = Field(min_length=1, max_length=250)
     category: Category
+    status: Literal["scheduled", "cancelled", "postponed"] = "scheduled"
     venue_id: str | None = None
     city: str = Field(min_length=1, max_length=100)
     description: str = Field(default="", max_length=10000)

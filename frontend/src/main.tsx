@@ -99,6 +99,9 @@ function EventCard({
         <div className="event-topline">
           <span className="category">{label(event.category)}</span>
           <Badge event={event} />
+          {event.status !== "scheduled" && (
+            <span className="badge event-status">{label(event.status)}</span>
+          )}
         </div>
         <h3>
           <a
@@ -167,6 +170,9 @@ function Detail({ event, onBack }: { event: Event; onBack: () => void }) {
         </span>
         <h1>{event.name}</h1>
         <Badge event={event} />
+        {event.status !== "scheduled" && (
+          <span className="badge event-status">{label(event.status)}</span>
+        )}
       </div>
       <div className="detail-columns">
         <div>
@@ -309,6 +315,18 @@ function App() {
     return () => window.removeEventListener("popstate", pop);
   }, []);
   const refresh = useCallback(() => setReload((n) => n + 1), []);
+  useEffect(() => {
+    if (view === "admin") return;
+    const update = () => {
+      if (document.visibilityState === "visible") refresh();
+    };
+    const timer = setInterval(update, 300000);
+    window.addEventListener("focus", update);
+    return () => {
+      clearInterval(timer);
+      window.removeEventListener("focus", update);
+    };
+  }, [refresh, view]);
   useEffect(() => {
     let live = true;
     setError("");

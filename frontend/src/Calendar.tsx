@@ -92,6 +92,9 @@ export default function Calendar({
                   >
                     {o.start_time && <small>{timeLabel(o.start_time)}</small>}
                     {e.name}
+                    {e.status !== "scheduled" && (
+                      <small>{e.status.toUpperCase()}</small>
+                    )}
                     {o.start_date !== o.end_date && (
                       <small>Date range · check schedule</small>
                     )}

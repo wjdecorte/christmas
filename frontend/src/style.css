@@ -1684,3 +1684,127 @@ footer {
     font-size: 12px;
   }
 }
+/* Source review keeps uncertain discoveries separate from the public calendar. */
+.review-workspace {
+  margin-top: 24px;
+}
+.review-workspace h3 {
+  font-size: 23px;
+}
+.review-workspace .section-heading p {
+  max-width: 75ch;
+}
+.review-workspace .source-link {
+  overflow-wrap: anywhere;
+}
+.proposal-editor {
+  padding: 24px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 32px;
+}
+.comparison-scroll {
+  overflow-x: auto;
+  margin: 20px 0;
+}
+.review-comparison {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 14px;
+  table-layout: fixed;
+}
+.review-comparison th,
+.review-comparison td {
+  border: 1px solid var(--border);
+  padding: 12px;
+  text-align: left;
+  vertical-align: top;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.review-comparison thead th {
+  background: var(--green);
+  color: white;
+}
+.review-comparison th:first-child {
+  width: 20%;
+}
+.review-comparison td:last-child {
+  background: var(--gold-surface);
+}
+.evidence {
+  margin: 18px 0;
+}
+.evidence summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+.evidence p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin-top: 12px;
+  max-height: 240px;
+  overflow: auto;
+}
+.source-settings {
+  margin-top: 40px;
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+}
+.source-row > span {
+  min-width: 0;
+  flex: 1;
+}
+.source-row small {
+  overflow-wrap: anywhere;
+}
+.source-row small svg {
+  display: inline;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+.source-row p {
+  font-size: 13px;
+  margin-top: 7px;
+  overflow-wrap: anywhere;
+}
+.source-row .error {
+  padding: 8px 12px;
+}
+.source-row > .button-row {
+  flex-shrink: 0;
+}
+.event-status {
+  background: #fbecef;
+  color: #982036;
+}
+.event-topline {
+  flex-wrap: wrap;
+}
+input,
+select,
+textarea {
+  font-size: 16px;
+}
+@media (max-width: 760px) {
+  .proposal-editor {
+    padding: 16px;
+  }
+  .review-comparison {
+    min-width: 560px;
+  }
+  .review-workspace .section-heading {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .source-row {
+    flex-direction: column;
+  }
+  .source-row > .button-row {
+    flex-wrap: wrap;
+  }
+  .review-workspace .admin-list .button-row {
+    flex-wrap: wrap;
+  }
+}
