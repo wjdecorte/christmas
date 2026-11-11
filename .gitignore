@@ -16,3 +16,6 @@ backups/
 *.dump
 *.log
 .DS_Store
+
+# Cloudflare connector credentials stay on the deployment host.
+secrets/

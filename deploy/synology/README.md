@@ -75,3 +75,7 @@ docker compose up -d --wait
 See the root README for importing existing events, backup/restore details, credentials, and manual verification. An existing Mac database is not bundled in the image. Transfer its SQLite backup separately and restore into an isolated NAS installation before selecting that installation as the authoritative writer. Do not copy only an actively written SQLite main file; use the backup command.
 
 References: [GHCR authentication](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry), [Docker multi-platform builds](https://docs.docker.com/build/ci/github-actions/multi-platform/).
+
+## Public access through Cloudflare
+
+For `christmas.decorteindustries.com`, use the optional [tunnel deployment guide](TUNNEL.md) and `compose.tunnel.yaml` alongside the base Compose file. The app stays on the NAS; public mode and the outbound connector are enabled together.

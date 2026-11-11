@@ -1,0 +1,27 @@
+# Use together with compose.yaml after creating a remotely managed Cloudflare Tunnel.
+services:
+  app:
+    environment:
+      PUBLIC_MODE: "true"
+      PUBLIC_ORIGIN: https://christmas.decorteindustries.com
+      PUBLIC_INDEXABLE: "false"
+  cloudflared:
+    image: ${CLOUDFLARED_IMAGE:-cloudflare/cloudflared:2026.10.7}
+    command: ["tunnel", "--no-autoupdate", "run", "--token-file", "/run/secrets/tunnel-token"]
+    user: "${APP_UID:-1000}:${APP_GID:-1000}"
+    volumes:
+      - ./secrets/cloudflare-tunnel-token:/run/secrets/tunnel-token:ro
+    depends_on:
+      app:
+        condition: service_healthy
+    restart: unless-stopped
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
