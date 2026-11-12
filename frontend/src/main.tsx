@@ -397,6 +397,19 @@ function App() {
       .getElementById("event-" + id)
       ?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }, []);
+  const showOnMap = useCallback((id: string) => {
+    setSelected(id);
+    if (window.matchMedia("(max-width: 760px)").matches) {
+      const map = document.getElementById("event-map");
+      map?.focus({ preventScroll: true });
+      map?.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth",
+        block: "start",
+      });
+    }
+  }, []);
   const events = useMemo(() => {
     let e = allEvents.filter(
       (e) =>
@@ -813,7 +826,7 @@ function App() {
                             today={today}
                             selected={e.id === selected}
                             onOpen={open}
-                            onSelect={select}
+                            onSelect={showOnMap}
                           />
                         ))
                       ) : (

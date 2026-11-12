@@ -120,7 +120,12 @@ export default function EventMap({
   }, [selected, events]);
   const count = events.filter((e) => e.venue?.latitude != null).length;
   return (
-    <section className="map-section" aria-label="Event map">
+    <section
+      id="event-map"
+      className="map-section"
+      aria-label="Event map"
+      tabIndex={-1}
+    >
       <div className="map-heading">
         <div>
           <h2>A little closer to home</h2>
