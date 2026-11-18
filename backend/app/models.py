@@ -99,12 +99,20 @@ class Event(BaseModel):
 
     @model_validator(mode="after")
     def confirmation(self):
-        if self.verified and (
-            not self.last_verified or not self.source_url or not self.occurrences
-        ):
-            raise ValueError(
-                "Verified events require a source URL, verification date and dated occurrence"
-            )
+        if self.verified:
+            missing = []
+            if not self.last_verified:
+                missing.append("a last verification date")
+            if not self.source_url:
+                missing.append("an official source URL")
+            if not self.occurrences:
+                missing.append("at least one event date")
+            if missing:
+                requirements = missing[0] if len(missing) == 1 else ", ".join(missing[:-1]) + " and " + missing[-1]
+                raise ValueError(
+                    f"To mark this event as verified, add {requirements}. "
+                    "You can also uncheck Verified to save it without verification."
+                )
         return self
 
 

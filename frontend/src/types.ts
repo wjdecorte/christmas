@@ -69,6 +69,33 @@ export const timeLabel = (s: string | null) =>
     : "Time TBA";
 export const dayString = (date: Date) =>
   `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+const fallbackError = "We couldn’t complete that request. Please try again.";
+
+export function apiErrorMessage(detail: unknown): string {
+  if (typeof detail === "string" && detail.trim()) return detail;
+  if (!Array.isArray(detail)) return fallbackError;
+  const messages = detail.flatMap((issue: unknown) => {
+    if (!issue || typeof issue !== "object") return [];
+    const { msg, loc } = issue as { msg?: unknown; loc?: unknown };
+    if (typeof msg !== "string" || !msg.trim()) return [];
+    const message = msg.replace(/^Value error, /, "");
+    const fields = Array.isArray(loc)
+      ? loc.filter(
+          (part) => part !== "body" && part !== "query" && part !== "path",
+        )
+      : [];
+    const field = fields
+      .map((part) =>
+        typeof part === "number"
+          ? `#${part + 1}`
+          : String(part).replaceAll("_", " "),
+      )
+      .join(" → ");
+    return [field ? `${field}: ${message}` : message];
+  });
+  return [...new Set(messages)].join(". ") || fallbackError;
+}
+
 export async function api<T>(
   path: string,
   options: RequestInit = {},
@@ -78,10 +105,10 @@ export async function api<T>(
     headers: { "Content-Type": "application/json", ...options.headers },
   });
   if (!r.ok) {
-    let msg = "Request failed. Please try again.";
+    let msg = fallbackError;
     try {
       const d = await r.json();
-      msg = typeof d.detail === "string" ? d.detail : JSON.stringify(d.detail);
+      msg = apiErrorMessage(d.detail);
     } catch {}
     throw new Error(msg);
   }
