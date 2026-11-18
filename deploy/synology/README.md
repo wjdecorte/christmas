@@ -2,7 +2,7 @@
 
 This uses the same deployment pattern as Picker: GitHub Actions tests the application, builds amd64 and arm64 images on native runners, and publishes **ghcr.io/wjdecorte/christmas**. The NAS pulls a prebuilt image. It does not need source code, Node, Python, uv, or a local Docker build.
 
-`latest` follows `main`; `sha-<full-commit>` pins a build. Version tags such as `v1.2.3` also publish `1.2.3` and `1.2`, without replacing `latest`. Publishing uses the workflow's built-in `GITHUB_TOKEN`. A new package stays private by default. Check the [image workflow](https://github.com/wjdecorte/christmas/actions/workflows/image.yaml) for a successful publication before trying the first pull.
+`stable` and `latest` follow tested `main` builds; `sha-<full-commit>` pins a build. Version tags such as `v1.2.3` also publish `1.2.3` and `1.2`, without replacing `latest`. Publishing uses the workflow's built-in `GITHUB_TOKEN`. A new package stays private by default. Check the [image workflow](https://github.com/wjdecorte/christmas/actions/workflows/image.yaml) for a successful publication before trying the first pull.
 
 ## 1. Registry login
 
@@ -79,3 +79,36 @@ References: [GHCR authentication](https://docs.github.com/en/packages/working-wi
 ## Public access through Cloudflare
 
 For `christmas.decorteindustries.com`, use the optional [tunnel deployment guide](TUNNEL.md) and `compose.tunnel.yaml` alongside the base Compose file. The app stays on the NAS; public mode and the outbound connector are enabled together.
+
+
+## Shared NAS updater preparation (not activated)
+
+The application is prepared for a separately managed What's Up Docker (WUD)
+service. No updater container is installed by this project. Monitoring defaults
+to off (`WUD_WATCH=false`); cloudflared is explicitly excluded.
+
+After this branch is merged and its main image workflow succeeds, `stable` will
+be available. Existing live `.env` commit pins continue to take precedence. To
+participate later, deliberately change only `CHRISTMAS_IMAGE` to
+`ghcr.io/wjdecorte/christmas:stable` and `WUD_WATCH` to `true`, preserving all other
+settings. Recreate with **both** `compose.yaml` and `compose.tunnel.yaml`. Do not
+perform these steps until the shared updater project is ready. WUD digest
+monitoring follows changes to `stable`; the tag filter excludes unrelated SHA
+and version tags.
+
+The tunnel override inherits the base image selection. It no longer supplies an
+old fallback image; public-mode safeguards remain enabled regardless of image
+selection. Immutable SHA/digest pins remain supported for manual deployment and
+rollback, but will not track new `stable` builds.
+
+Start the shared service in notification-only mode with Docker auto-discovery
+opt-in and update triggers disabled. Container monitoring labels do not themselves
+establish a safe deployment policy. Before enabling updates, integrate the
+SQLite maintenance backup, serialized updates, health checks, failure alerts,
+and previous-image recovery. A WUD Compose-file backup is not a database backup;
+image rollback cannot undo incompatible database migrations. The updater must
+preserve both Compose files and the authoritative `.env` image setting rather
+than modifying only a running container. Test Synology compatibility and private
+GHCR authentication in the infrastructure project. Keep its dashboard LAN-only.
+
+See [the new-project handoff prompt](../../docs/NAS_UPDATER_HANDOFF.md).

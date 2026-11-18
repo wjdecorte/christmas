@@ -1,6 +1,12 @@
 services:
   app:
-    image: ${CHRISTMAS_IMAGE:-ghcr.io/wjdecorte/christmas:latest}
+    image: ${CHRISTMAS_IMAGE:-ghcr.io/wjdecorte/christmas:stable}
+    # Shared NAS updater is managed separately; monitoring is explicit opt-in.
+    labels:
+      wud.watch: "${WUD_WATCH:-false}"
+      wud.watch.digest: "true"
+      wud.tag.include: "^stable$"
+      wud.display.name: North Georgia Holiday Events
     ports:
       - "${BIND_ADDRESS:-0.0.0.0}:${PORT:-8090}:8090"
     environment:

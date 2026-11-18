@@ -1,12 +1,13 @@
 # Use together with compose.yaml after creating a remotely managed Cloudflare Tunnel.
 services:
   app:
-    image: ${CHRISTMAS_IMAGE:-ghcr.io/wjdecorte/christmas:sha-71de8ca8984ddc794e16cc7e5df8c24c85ed5fa3}
     environment:
       PUBLIC_MODE: "true"
       PUBLIC_ORIGIN: https://christmas.decorteindustries.com
       PUBLIC_INDEXABLE: "false"
   cloudflared:
+    labels:
+      wud.watch: "false"
     image: ${CLOUDFLARED_IMAGE:-cloudflare/cloudflared:2026.10.7}
     command: ["tunnel", "--no-autoupdate", "run", "--token-file", "/run/secrets/tunnel-token"]
     user: "${APP_UID:-1000}:${APP_GID:-1000}"

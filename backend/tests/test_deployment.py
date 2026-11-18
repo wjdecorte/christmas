@@ -11,7 +11,7 @@ def test_nas_files_match_and_only_pull():
     assert root == (ROOT / "deploy/synology/compose.yaml").read_text()
     service = yaml.safe_load(root)["services"]["app"]
     assert "build" not in service
-    assert service["image"] == "${CHRISTMAS_IMAGE:-ghcr.io/wjdecorte/christmas:latest}"
+    assert service["image"] == "${CHRISTMAS_IMAGE:-ghcr.io/wjdecorte/christmas:stable}"
     assert service["read_only"] is True
     assert service["restart"] == "unless-stopped"
     assert service["healthcheck"]["test"][0] == "CMD"
@@ -31,7 +31,7 @@ def test_ci_checks_gate_both_architectures_and_publishing():
     jobs = workflow["jobs"]
     assert jobs["build"]["needs"] == "verify"
     assert jobs["publish"]["needs"] == "build"
-    assert jobs["build"]["if"] == "github.event_name != 'pull_request'"
+    assert jobs["build"]["if"] == "github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v'))"
     architectures = {
         item["arch"] for item in jobs["build"]["strategy"]["matrix"]["include"]
     }
@@ -51,10 +51,23 @@ def test_ci_checks_gate_both_architectures_and_publishing():
 def test_tunnel_uses_tested_app_and_private_token_without_extra_ports():
     override = yaml.safe_load((ROOT / "deploy/synology/compose.tunnel.yaml").read_text())
     app = override["services"]["app"]
-    assert ":sha-" in app["image"]  # A cached LAN 'latest' must not undo public hardening.
+    assert "image" not in app  # Inherit CHRISTMAS_IMAGE from the base, including explicit pins.
     assert app["environment"]["PUBLIC_MODE"] == "true"
     assert app["environment"]["PUBLIC_ORIGIN"] == "https://christmas.decorteindustries.com"
     connector = override["services"]["cloudflared"]
+    assert connector["labels"]["wud.watch"] == "false"
     assert "ports" not in connector and "network_mode" not in connector
     assert "--token-file" in connector["command"] and "--token" not in connector["command"]
     assert connector["depends_on"]["app"]["condition"] == "service_healthy"
+
+
+def test_shared_updater_is_opt_in_and_tracks_only_stable():
+    service = yaml.safe_load((ROOT / "compose.yaml").read_text())["services"]["app"]
+    assert service["labels"]["wud.watch"] == "${WUD_WATCH:-false}"
+    assert service["labels"]["wud.watch.digest"] == "true"
+    assert service["labels"]["wud.tag.include"] == "^stable$"
+    workflow = yaml.safe_load((ROOT / ".github/workflows/image.yaml").read_text())
+    steps = workflow["jobs"]["publish"]["steps"]
+    tags = next(step["with"]["tags"] for step in steps if step.get("id") == "meta")
+    assert "type=raw,value=stable,enable={{is_default_branch}}" in tags
+    assert "type=sha,format=long" in tags

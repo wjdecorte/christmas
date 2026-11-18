@@ -46,11 +46,12 @@ jobs:
           docker compose config --quiet
           docker compose -f deploy/synology/compose.yaml config --quiet
           docker compose -f compose.yaml -f compose.build.yaml config --quiet
+          docker compose -f deploy/synology/compose.yaml -f deploy/synology/compose.tunnel.yaml config --quiet
 
   build:
     name: Build ${{ matrix.arch }} image
     needs: verify
-    if: github.event_name != 'pull_request'
+    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v'))
     strategy:
       fail-fast: false
       matrix:
@@ -139,6 +140,7 @@ jobs:
           flavor: latest=false
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=stable,enable={{is_default_branch}}
             type=sha,format=long
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
