@@ -30,7 +30,7 @@ describe("API error messages", () => {
       msg: "Enter a valid date",
     };
     expect(apiErrorMessage([issue, issue])).toBe(
-      "occurrences → #1 → start date: Enter a valid date",
+      "Event dates → #1 → start date: Enter a valid date.",
     );
   });
   it("preserves authentication and other server guidance", () => {
@@ -50,4 +50,39 @@ describe("API error messages", () => {
       );
     }
   });
+});
+
+describe("friendly field validation", () => {
+  it.each([
+    ["missing", {}, "Please fill in this field."],
+    ["string_too_short", { min_length: 1 }, "Please fill in this field."],
+    ["string_too_long", { max_length: 250 }, "Use 250 characters or fewer."],
+    ["greater_than_equal", { ge: 2000 }, "Enter 2000 or higher."],
+    ["less_than_equal", { le: 90 }, "Enter 90 or lower."],
+    ["date_from_datetime_parsing", {}, "Enter a valid date (YYYY-MM-DD)."],
+    ["time_parsing", {}, "Enter a valid time (HH:MM)."],
+    ["int_parsing", {}, "Enter a valid number."],
+    ["literal_error", {}, "Choose one of the available options."],
+    [
+      "json_invalid",
+      {},
+      "This file isn’t valid JSON. Check its format and try again.",
+    ],
+    ["unexpected_type", {}, "Check this value and try again."],
+  ])(
+    "translates %s without exposing technical details",
+    (type, ctx, expected) => {
+      expect(
+        apiErrorMessage([
+          {
+            type,
+            ctx,
+            msg: "technical internals",
+            loc: ["body", "last_verified"],
+            input: "sensitive",
+          },
+        ]),
+      ).toBe(`Last verification date: ${expected}`);
+    },
+  );
 });

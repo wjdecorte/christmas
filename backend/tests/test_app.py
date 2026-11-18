@@ -314,3 +314,23 @@ def test_favicon_serves_svg_instead_of_spa_html(client, tmp_path, monkeypatch):
     assert response.status_code == 200
     assert response.headers["content-type"].startswith("image/svg+xml")
     assert response.content == source.read_bytes()
+
+
+def test_import_validation_omits_submitted_values(client, auth):
+    response = client.post("/api/admin/import", headers=auth, json={
+        "format": "json", "content": json.dumps({"events": [sample(name="", description="private imported content")]}),
+    })
+    assert response.status_code == 422
+    detail = response.json()["detail"]
+    assert detail[0]["loc"] == ["events", 0, "name"]
+    assert detail[0]["ctx"]["min_length"] == 1
+    assert "private imported content" not in response.text
+    assert "input" not in detail[0]
+
+
+def test_import_model_validation_is_serializable(client, auth):
+    response = client.post("/api/admin/import", headers=auth, json={
+        "format": "json", "content": json.dumps({"events": [sample(verified=True)]}),
+    })
+    assert response.status_code == 422
+    assert "last verification date" in response.json()["detail"][0]["msg"]

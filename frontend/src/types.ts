@@ -76,9 +76,50 @@ export function apiErrorMessage(detail: unknown): string {
   if (!Array.isArray(detail)) return fallbackError;
   const messages = detail.flatMap((issue: unknown) => {
     if (!issue || typeof issue !== "object") return [];
-    const { msg, loc } = issue as { msg?: unknown; loc?: unknown };
+    const { msg, loc, type, ctx } = issue as {
+      msg?: unknown;
+      loc?: unknown;
+      type?: string;
+      ctx?: Record<string, unknown>;
+    };
     if (typeof msg !== "string" || !msg.trim()) return [];
-    const message = msg.replace(/^Value error, /, "");
+    let message = msg.replace(/^Value error, /, "");
+    const limit = (key: string) =>
+      typeof ctx?.[key] === "number" ? ctx[key] : undefined;
+    if (type === "missing") message = "Please fill in this field";
+    else if (type === "string_too_short")
+      message =
+        limit("min_length") === 1
+          ? "Please fill in this field"
+          : `Use at least ${limit("min_length")} characters`;
+    else if (type === "string_too_long")
+      message = `Use ${limit("max_length")} characters or fewer`;
+    else if (type === "greater_than_equal")
+      message = `Enter ${limit("ge")} or higher`;
+    else if (type === "less_than_equal")
+      message = `Enter ${limit("le")} or lower`;
+    else if (type === "too_long")
+      message = `Keep this list to ${limit("max_length")} items or fewer`;
+    else if (type?.startsWith("date_"))
+      message = "Enter a valid date (YYYY-MM-DD)";
+    else if (type?.startsWith("time_")) message = "Enter a valid time (HH:MM)";
+    else if (
+      type?.startsWith("int_") ||
+      type?.startsWith("float_") ||
+      type === "finite_number"
+    )
+      message = "Enter a valid number";
+    else if (type === "literal_error" || type === "enum")
+      message = "Choose one of the available options";
+    else if (type === "string_pattern_mismatch")
+      message = "Use the format shown for this field";
+    else if (type?.startsWith("url_"))
+      message =
+        "Enter a complete web address starting with https:// or http://";
+    else if (type?.startsWith("json_"))
+      message = "This file isn’t valid JSON. Check its format and try again";
+    else if (type && type !== "value_error")
+      message = "Check this value and try again";
     const fields = Array.isArray(loc)
       ? loc.filter(
           (part) => part !== "body" && part !== "query" && part !== "path",
@@ -88,12 +129,25 @@ export function apiErrorMessage(detail: unknown): string {
       .map((part) =>
         typeof part === "number"
           ? `#${part + 1}`
-          : String(part).replaceAll("_", " "),
+          : (
+              {
+                last_verified: "Last verification date",
+                last_checked: "Last checked date",
+                source_url: "Official source URL",
+                venue_id: "Venue",
+                occurrences: "Event dates",
+                id: "ID",
+              } as Record<string, string>
+            )[String(part)] || String(part).replaceAll("_", " "),
       )
       .join(" → ");
     return [field ? `${field}: ${message}` : message];
   });
-  return [...new Set(messages)].join(". ") || fallbackError;
+  return (
+    [...new Set(messages)]
+      .map((message) => (/[.!?]$/.test(message) ? message : `${message}.`))
+      .join(" ") || fallbackError
+  );
 }
 
 export async function api<T>(

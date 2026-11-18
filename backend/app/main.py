@@ -519,8 +519,17 @@ def import_data(payload: ImportBody):
             {v.id for v in data.venues}
         ) != len(data.venues):
             raise ValueError("Duplicate IDs in import")
+    except ValidationError as exc:
+        errors = exc.errors(include_input=False, include_url=False)
+        for error in errors:
+            error["ctx"] = {
+                key: value for key, value in error.get("ctx", {}).items()
+                if isinstance(value, (int, float))
+            }
+        raise HTTPException(422, errors)
+    except json.JSONDecodeError:
+        raise HTTPException(422, "Import rejected: check that the file contains valid JSON.")
     except (
-        ValidationError,
         ValueError,
         KeyError,
         TypeError,
