@@ -161,3 +161,14 @@ copies, not subscriptions; changes/cancellations do not sync automatically.
 Public endpoints: `/api/events/{id}/calendar` provides draft links;
 `/api/events/{id}/calendar.ics?occurrence=0` downloads one performance. Omitting
 `occurrence` downloads all dated performances in a single file.
+
+
+### Versioning
+
+Every change must update the application version using semantic versioning:
+patch for compatible fixes, minor for new compatible features, major for breaking
+changes. Multiple commits in one unreleased feature may share its planned release
+version. Keep `pyproject.toml`, the application entry in `uv.lock`,
+`frontend/package.json`, `frontend/package-lock.json` and FastAPI's API version in
+sync. Document changes in `CHANGELOG.md`. Create the matching `vX.Y.Z` release tag
+only when releasing the merged, tested version; do not tag unmerged branches.

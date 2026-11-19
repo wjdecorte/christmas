@@ -58,3 +58,17 @@ def test_tunnel_uses_tested_app_and_private_token_without_extra_ports():
     assert "ports" not in connector and "network_mode" not in connector
     assert "--token-file" in connector["command"] and "--token" not in connector["command"]
     assert connector["depends_on"]["app"]["condition"] == "service_healthy"
+
+
+def test_application_versions_stay_in_sync():
+    import json
+    import tomllib
+    from app.main import app
+
+    version = tomllib.loads((ROOT / "pyproject.toml").read_text())["project"]["version"]
+    assert app.version == version
+    package = json.loads((ROOT / "frontend/package.json").read_text())
+    lock = json.loads((ROOT / "frontend/package-lock.json").read_text())
+    assert package["version"] == lock["version"] == lock["packages"][""]["version"] == version
+    uv = tomllib.loads((ROOT / "uv.lock").read_text())
+    assert next(p for p in uv["package"] if p["name"] == package["name"])["version"] == version
