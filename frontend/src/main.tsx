@@ -30,6 +30,7 @@ import "@fontsource/lora/latin-500.css";
 import "@fontsource/source-sans-3/latin-400.css";
 import "@fontsource/source-sans-3/latin-600.css";
 import "./style.css";
+import AddToCalendar from "./AddToCalendar";
 import type { Event, Meta, Venue } from "./types";
 import { api, categories, label, dateLabel, timeLabel } from "./types";
 const EventMap = lazy(() => import("./Map"));
@@ -191,7 +192,12 @@ function Detail({ event, onBack }: { event: Event; onBack: () => void }) {
         <div>
           <p className="description">{event.description}</p>
           <h2>When to go</h2>
-          {!event.occurrences.length && <p>Dates to be announced.</p>}
+          {!event.occurrences.length && (
+            <p>
+              Dates to be announced. Calendar saving will be available once
+              dates are announced.
+            </p>
+          )}
           <ul className="schedule">
             {event.occurrences.map((o, i) => (
               <li key={i}>
@@ -218,6 +224,18 @@ function Detail({ event, onBack }: { event: Event; onBack: () => void }) {
                     {o.end_time ? " – " + timeLabel(o.end_time) : ""} · Eastern
                     Time
                   </p>
+                  {event.status === "scheduled" ? (
+                    <AddToCalendar
+                      eventId={event.id}
+                      occurrence={i}
+                      timeUnknown={!o.start_time}
+                    />
+                  ) : (
+                    <p>
+                      Calendar saving is unavailable while this event is{" "}
+                      {event.status}.
+                    </p>
+                  )}
                 </div>
               </li>
             ))}

@@ -142,3 +142,22 @@ See [Discovery](docs/DISCOVERY.md) for supported structured feeds, robots/reques
 ## Data limitations
 
 The supplied list is a starting calendar, not proof of organizer schedules. The seed includes official-source checks dated November 10, 2026, and preserves unresolved records. Some venues, times, admission prices and run dates remain unknown. Check `docs/SOURCES.md` and each event's notes. Unknown locations are excluded from markers; unknown dates are excluded from the calendar. Scheduled source checks create private review proposals; administrator approval is required to publish them. NAS installation itself requires access to the NAS; local Docker verification does not establish deployment there.
+
+### Save an event to your calendar
+
+Open an event and choose **Add to calendar** beside the performance you want.
+Google Calendar, Outlook.com and Microsoft 365 open a prefilled draft; **Apple /
+other calendars (.ics)** downloads an iCalendar file for import. No calendar
+account access or sign-in is required by this app. Review and save in your
+calendar application. Provider web links require internet access.
+
+Dates/times use America/New_York with daylight-saving conversion. Unknown times
+are explicitly labeled all-day reminders; unknown end times are not invented
+(the calendar provider may suggest an end time in its draft). Date ranges retain
+a warning to check actual operating days. Undated, cancelled and postponed events
+do not offer the save control. Each performance is separate. Downloads are saved
+copies, not subscriptions; changes/cancellations do not sync automatically.
+
+Public endpoints: `/api/events/{id}/calendar` provides draft links;
+`/api/events/{id}/calendar.ics?occurrence=0` downloads one performance. Omitting
+`occurrence` downloads all dated performances in a single file.

@@ -334,3 +334,24 @@ def test_import_model_validation_is_serializable(client, auth):
     })
     assert response.status_code == 422
     assert "last verification date" in response.json()["detail"][0]["msg"]
+
+def test_public_calendar_download_and_unknown_date(client):
+    events = client.get("/api/events").json()
+    dated = next(e for e in events if e["occurrences"])
+    response = client.get(f"/api/events/{dated['id']}/calendar.ics?occurrence=0")
+    assert response.status_code == 200
+    assert response.headers["content-type"].startswith("text/calendar")
+    assert "attachment" in response.headers["content-disposition"]
+    assert response.text.count("BEGIN:VEVENT") == 1
+    assert (
+        client.get(f"/api/events/{dated['id']}/calendar")
+        .json()[0]["google"]
+        .startswith("https://calendar.google.com/")
+    )
+    assert (
+        client.get(f"/api/events/{dated['id']}/calendar.ics?occurrence=999").status_code
+        == 404
+    )
+    assert client.get("/api/events/missing/calendar.ics").status_code == 404
+    undated = next(e for e in events if not e["occurrences"])
+    assert client.get(f"/api/events/{undated['id']}/calendar.ics").status_code == 422

@@ -1829,3 +1829,10 @@ a.event-source {
 .event-source-list a { display: inline-flex; gap: 6px; align-items: center; font-weight: 600; }
 .event-source-list p { margin: 6px 0; }
 .event-source-list .source-url { overflow-wrap: anywhere; color: var(--muted); font-size: 14px; }
+
+/* Calendar choices stay beside the performance they save. */
+.add-calendar { margin-top: 12px; }
+.calendar-options { margin-top: 12px; max-width: 65ch; }
+.calendar-options p { font-size: 14px; }
+.calendar-options .button-row { flex-wrap: wrap; gap: 12px; }
+.calendar-options a { text-underline-offset: 3px; overflow-wrap: anywhere; }

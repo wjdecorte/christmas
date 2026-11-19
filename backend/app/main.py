@@ -296,6 +296,32 @@ def event_detail(event_id: str):
     return event
 
 
+@app.get("/api/events/{event_id}/calendar")
+def event_calendar_links(event_id: str):
+    from .calendar_export import calendar_entry
+
+    event = event_detail(event_id)
+    return [calendar_entry(event, i) for i in range(len(event["occurrences"]))]
+
+
+@app.get("/api/events/{event_id}/calendar.ics")
+def event_calendar_download(
+    event_id: str, occurrence: int | None = Query(default=None, ge=0)
+):
+    from .calendar_export import calendar_file
+
+    event = event_detail(event_id)
+    if not event["occurrences"]:
+        raise HTTPException(422, "This event’s dates have not been announced yet.")
+    if occurrence is not None and occurrence >= len(event["occurrences"]):
+        raise HTTPException(404, "Event date not found")
+    return Response(
+        calendar_file(event, occurrence),
+        media_type="text/calendar; charset=utf-8",
+        headers={"Content-Disposition": f'attachment; filename="{event_id}.ics"'},
+    )
+
+
 @app.get("/api/venues", response_model=list[Venue])
 def venues():
     with connect() as db:
