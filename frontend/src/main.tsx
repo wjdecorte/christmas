@@ -32,7 +32,15 @@ import "@fontsource/source-sans-3/latin-600.css";
 import "./style.css";
 import AddToCalendar from "./AddToCalendar";
 import type { Event, Meta, Venue } from "./types";
-import { api, categories, label, dateLabel, timeLabel } from "./types";
+import {
+  api,
+  categories,
+  label,
+  dateLabel,
+  timeLabel,
+  hasCurrentDates,
+  eventSortDate,
+} from "./types";
 const EventMap = lazy(() => import("./Map"));
 const Calendar = lazy(() => import("./Calendar"));
 const Admin = lazy(() => import("./Admin"));
@@ -332,7 +340,7 @@ function App() {
     [verified, setVerified] = useState(false),
     [price, setPrice] = useState(""),
     [sort, setSort] = useState("date"),
-    [quick, setQuick] = useState("all");
+    [quick, setQuick] = useState("upcoming");
   const [view, setView] = useState("discover"),
     [selected, setSelected] = useState<string | null>(null),
     [path, setPath] = useState(location.pathname),
@@ -446,7 +454,8 @@ function App() {
               (!start || o.end_date >= start) && (!end || o.start_date <= end),
           )),
     );
-    if (quick !== "all" && summary) {
+    if (quick !== "all") e = e.filter((event) => hasCurrentDates(event, today));
+    if (quick !== "all" && quick !== "upcoming" && summary) {
       const ids =
         quick === "concerts"
           ? summary.concerts
@@ -462,17 +471,9 @@ function App() {
         ? a.name.localeCompare(b.name)
         : sort === "city"
           ? a.city.localeCompare(b.city) || a.name.localeCompare(b.name)
-          : (
-              a.occurrences.find((o) => o.end_date >= (start || today))
-                ?.start_date ||
-              a.occurrences[0]?.start_date ||
-              "9999"
-            ).localeCompare(
-              b.occurrences.find((o) => o.end_date >= (start || today))
-                ?.start_date ||
-                b.occurrences[0]?.start_date ||
-                "9999",
-            ),
+          : eventSortDate(a, start || today, quick !== "all").localeCompare(
+              eventSortDate(b, start || today, quick !== "all"),
+            ) || a.name.localeCompare(b.name),
     );
   }, [
     allEvents,
@@ -499,7 +500,7 @@ function App() {
     setEnd("");
     setVerified(false);
     setPrice("");
-    setQuick("all");
+    setQuick("upcoming");
   }
   const tabs = [
     { id: "discover", name: "Discover", icon: LayoutList },
@@ -643,7 +644,7 @@ function App() {
                   <button
                     className={quick === "concerts" ? "chosen" : ""}
                     onClick={() =>
-                      setQuick(quick === "concerts" ? "all" : "concerts")
+                      setQuick(quick === "concerts" ? "upcoming" : "concerts")
                     }
                   >
                     <Music size={19} />
@@ -658,7 +659,7 @@ function App() {
                   <button
                     className={quick === "weekend" ? "chosen" : ""}
                     onClick={() =>
-                      setQuick(quick === "weekend" ? "all" : "weekend")
+                      setQuick(quick === "weekend" ? "upcoming" : "weekend")
                     }
                   >
                     <CalendarDays size={19} />
@@ -676,7 +677,9 @@ function App() {
                   </button>
                   <button
                     className={quick === "free" ? "chosen" : ""}
-                    onClick={() => setQuick(quick === "free" ? "all" : "free")}
+                    onClick={() =>
+                      setQuick(quick === "free" ? "upcoming" : "free")
+                    }
                   >
                     <Sparkles size={19} />
                     <span>
@@ -809,7 +812,7 @@ function App() {
                     className={quick === "upcoming" ? "active" : ""}
                     onClick={() => setQuick("upcoming")}
                   >
-                    Upcoming
+                    Today & upcoming
                   </button>
                   {(query ||
                     city ||
@@ -876,7 +879,7 @@ function App() {
                               key={name}
                               onClick={() => {
                                 setCity(name);
-                                setQuick("all");
+                                setQuick("upcoming");
                               }}
                             >
                               {name}
@@ -895,7 +898,7 @@ function App() {
                               key={name}
                               onClick={() => {
                                 setCategory(name);
-                                setQuick("all");
+                                setQuick("upcoming");
                               }}
                             >
                               {label(name)}

@@ -1,5 +1,12 @@
 import { describe, it, expect } from "vitest";
-import { dateLabel, timeLabel, dayString, apiErrorMessage } from "./types";
+import {
+  dateLabel,
+  timeLabel,
+  dayString,
+  apiErrorMessage,
+  hasCurrentDates,
+  eventSortDate,
+} from "./types";
 describe("local holiday dates", () => {
   it("does not shift date-only records to the previous day", () =>
     expect(dateLabel("2026-12-03")).toBe("Dec 3"));
@@ -85,4 +92,42 @@ describe("friendly field validation", () => {
       ).toBe(`Last verification date: ${expected}`);
     },
   );
+});
+
+describe("today and upcoming events", () => {
+  const event = (dates: [string, string][]) =>
+    ({
+      occurrences: dates.map(([start_date, end_date]) => ({
+        start_date,
+        end_date,
+      })),
+    }) as import("./types").Event;
+  it("hides ended events but keeps today, future, ongoing and undated events", () => {
+    expect(
+      hasCurrentDates(event([["2026-11-23", "2026-11-23"]]), "2026-11-24"),
+    ).toBe(false);
+    for (const dates of [
+      [],
+      [["2026-11-24", "2026-11-24"]],
+      [["2026-11-20", "2026-12-01"]],
+      [["2026-12-01", "2026-12-01"]],
+    ] as [string, string][][]) {
+      expect(hasCurrentDates(event(dates), "2026-11-24")).toBe(true);
+    }
+  });
+  it("uses the next performance even when occurrences arrive out of order", () => {
+    const e = event([
+      ["2026-12-10", "2026-12-10"],
+      ["2026-11-01", "2026-11-01"],
+      ["2026-11-24", "2026-11-24"],
+    ]);
+    expect(eventSortDate(e, "2026-11-24", true)).toBe("2026-11-24");
+    expect(eventSortDate(e, "2026-11-24", false)).toBe("2026-11-01");
+  });
+  it("groups ongoing ranges with today and keeps unknown dates last", () => {
+    expect(
+      eventSortDate(event([["2026-11-01", "2026-12-01"]]), "2026-11-24", true),
+    ).toBe("2026-11-24");
+    expect(eventSortDate(event([]), "2026-11-24", true)).toBe("9999");
+  });
 });

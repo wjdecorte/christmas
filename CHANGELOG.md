@@ -1,6 +1,13 @@
 # Changelog
 
-## 1.1.0 — Unreleased
+## 1.1.1 — Unreleased
+
+### Fixed
+- Default browsing hides ended events and puts today's events and ongoing ranges
+  before future dates. Date-TBA events remain last; All events retains history.
+- Resetting filters returns to Today & upcoming.
+
+## 1.1.0 — 2026-11-19
 
 ### Added
 - Save individual event performances to Google Calendar, Outlook.com and Microsoft

@@ -168,3 +168,16 @@ export async function api<T>(
   }
   return r.json();
 }
+
+// Date-only comparisons use the server's Eastern calendar day, not UTC midnight.
+export const hasCurrentDates = (event: Event, today: string) =>
+  !event.occurrences.length ||
+  event.occurrences.some((o) => o.end_date >= today);
+
+export function eventSortDate(event: Event, today: string, upcoming: boolean) {
+  const dates = event.occurrences
+    .filter((o) => !upcoming || o.end_date >= today)
+    .map((o) => (upcoming && o.start_date < today ? today : o.start_date))
+    .sort();
+  return dates[0] || "9999";
+}

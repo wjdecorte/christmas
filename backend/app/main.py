@@ -55,7 +55,7 @@ async def lifespan(app):
 
 app = FastAPI(
     title="North Georgia Holiday Events",
-    version="1.1.0",
+    version="1.1.1",
     description="Public read-only event calendar. Administrator access: POST /api/auth/login with the configured password; retain its holiday_session cookie. Send the returned csrf value in X-CSRF-Token for administrative writes and logout. Data uses Eastern Time; unknown values are explicit. Imports are atomic upserts.",
     lifespan=lifespan,
     docs_url=None,
